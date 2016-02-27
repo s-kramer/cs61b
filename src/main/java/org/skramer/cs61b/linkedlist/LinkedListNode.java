@@ -207,4 +207,32 @@ public class LinkedListNode {
         listNode.setValue(listNode.getValue() + modification);
         dincrListRecursive(listNode.tail, modification);
     }
+
+    /**
+     * Reverses the linked list of which the @code node is the head. The reversion is made in place.
+     * The list provided inside @code node will be modified.
+     *
+     * @param node the head of the list to be reversed
+     * @return the head of the reversed list
+     */
+    public static LinkedListNode reverse(LinkedListNode node) {
+        LinkedListNode initialTail = node;
+        while (initialTail.tail != null)
+            initialTail = initialTail.tail;
+
+        reverseImpl(node);
+
+        return initialTail;
+    }
+
+    private static LinkedListNode reverseImpl(LinkedListNode head) {
+        if (head.tail != null) {
+            LinkedListNode reverse = reverseImpl(head.tail);
+            reverse.tail = head;
+            head.tail = null;
+
+            return head;
+        }
+        return head;
+    }
 }

@@ -143,5 +143,16 @@ public class LinkedListNodeTest {
 
         assertEquals(expectation, listNode.toString());
     }
+
+    @Test
+    public void listCanBeReversed() {
+        LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
+
+        LinkedListNode reversed = LinkedListNode.reverse(listNode);
+
+        assertEquals(15, reversed.getElement(0));
+        assertEquals(10, reversed.getElement(1));
+        assertEquals(5, reversed.getElement(2));
+    }
 }
 
