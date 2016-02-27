@@ -41,4 +41,18 @@ public class LinkedListNode {
     public void insertAfter(int value) {
         tail = new LinkedListNode(value, tail);
     }
+
+    /**
+     * Returns the size of the list from the current node.
+     * The list terminator is considered to be a null object.
+     *
+     * @return the number of nodes from the current node to the terminator node (null object).
+     */
+    public int size() {
+        if (tail == null) {
+            return 1;
+        }
+
+        return 1 + tail.size();
+    }
 }

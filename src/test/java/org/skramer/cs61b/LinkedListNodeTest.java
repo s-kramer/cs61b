@@ -18,4 +18,17 @@ public class LinkedListNodeTest {
         assertEquals(10, node.tail.value);
     }
 
+    @Test
+    public void theSizeOfTheListIsCalculated() {
+        LinkedListNode node = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
+
+        assertEquals(3, node.size());
+    }
+
+    @Test
+    public void theSizeOfTheListFromSpecificNodeIsCalculated() {
+        LinkedListNode node = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
+
+        assertEquals(2, node.tail.size());
+    }
 }
