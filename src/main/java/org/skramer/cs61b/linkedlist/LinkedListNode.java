@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
  * A linked list node
  */
 public class LinkedListNode {
-    public final int value;
+    private int value;
     public LinkedListNode tail;
 
     /**
@@ -17,6 +17,14 @@ public class LinkedListNode {
      */
     public LinkedListNode(int value, LinkedListNode next) {
         this.tail = next;
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
         this.value = value;
     }
 
@@ -51,6 +59,7 @@ public class LinkedListNode {
      * @return the number of nodes from the current node to the terminator node (null object).
      */
     public int size() {
+        // todo: alternative approach
         if (tail == null) {
             return 1;
         }

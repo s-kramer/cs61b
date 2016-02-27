@@ -26,7 +26,7 @@ public class LinkedListNodeTest {
 
         node.insertAfter(10);
 
-        assertEquals(10, node.tail.value);
+        assertEquals(10, node.tail.getValue());
     }
 
     @Test
@@ -62,6 +62,17 @@ public class LinkedListNodeTest {
         LinkedListNode listNode = this.linkedList;
 
         assertEquals(10, listNode.getElement(15));
+    }
+
+    @Test
+    public void allNodesGetModifiedInPlace() {
+        LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
+
+        LinkedListUtil.dincrList(listNode, 2);
+
+        assertEquals(7, listNode.getElement(0));
+        assertEquals(12, listNode.getElement(1));
+        assertEquals(17, listNode.getElement(2));
     }
 }
 
