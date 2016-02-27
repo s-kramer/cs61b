@@ -1,5 +1,7 @@
 package org.skramer.cs61b.linkedlist;
 
+import java.util.NoSuchElementException;
+
 /**
  * A linked list node
  */
@@ -54,5 +56,26 @@ public class LinkedListNode {
         }
 
         return 1 + tail.size();
+    }
+
+    /**
+     * Finds the n-th subsequent element counting from the current node and returns its value.
+     *
+     * @param i the index of the node that should be returned.
+     * @return the value associated with the i-th node
+     * @throws NoSuchElementException if requested index does not exist
+     */
+    public int getElement(int i) {
+        LinkedListNode current = this;
+        while (i > 0 && current != null) {
+            i -= 1;
+            current = current.tail;
+        }
+
+        if (current != null) {
+            return current.value;
+        } else {
+            throw new NoSuchElementException();
+        }
     }
 }

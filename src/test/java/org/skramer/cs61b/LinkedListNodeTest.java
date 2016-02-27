@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.skramer.cs61b.linkedlist.LinkedListNode;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -40,4 +42,26 @@ public class LinkedListNodeTest {
 
         assertEquals(2, listNode.tail.size());
     }
+
+    @Test
+    public void nthElementCanBeRequested() {
+        LinkedListNode listNode = this.linkedList;
+
+        assertEquals(10, listNode.getElement(1));
+    }
+
+    @Test
+    public void nthElementFromSpecificNodeCanBeRequested() {
+        LinkedListNode listNode = this.linkedList;
+
+        assertEquals(15, listNode.tail.getElement(1));
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void requestingNonExistingElementThrows() {
+        LinkedListNode listNode = this.linkedList;
+
+        assertEquals(10, listNode.getElement(15));
+    }
 }
+
