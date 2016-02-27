@@ -92,6 +92,7 @@ public class LinkedListNode {
      * @return the value associated with the i-th node
      * @throws NoSuchElementException if requested index does not exist
      */
+    // todo: recursive approach
     public int getElement(int i) {
         LinkedListNode current = this;
         while (i > 0 && current != null) {
