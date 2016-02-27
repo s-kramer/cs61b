@@ -235,4 +235,26 @@ public class LinkedListNode {
         }
         return head;
     }
+
+    /**
+     * Reverses the list for which the @code head is the head.
+     * This method uses iterative approach
+     *
+     * @param head the head of the list that should be reversed
+     * @return the head of the reversed list
+     */
+    public static LinkedListNode reverseIterative(LinkedListNode head) {
+        LinkedListNode previous = null;
+        LinkedListNode next;
+        while (head != null) {
+            next = head.tail;
+
+            head.tail = previous;
+
+            previous = head;
+            head = next;
+        }
+
+        return previous;
+    }
 }

@@ -154,5 +154,16 @@ public class LinkedListNodeTest {
         assertEquals(10, reversed.getElement(1));
         assertEquals(5, reversed.getElement(2));
     }
+
+    @Test
+    public void listCanBeReversedIterative() {
+        LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
+
+        LinkedListNode reversed = LinkedListNode.reverseIterative(listNode);
+
+        assertEquals(15, reversed.getElement(0));
+        assertEquals(10, reversed.getElement(1));
+        assertEquals(5, reversed.getElement(2));
+    }
 }
 
