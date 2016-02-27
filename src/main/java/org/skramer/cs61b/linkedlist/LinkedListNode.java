@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
  */
 public class LinkedListNode {
     private int value;
-    public LinkedListNode tail;
+    private LinkedListNode tail;
 
     /**
      * Constructor
@@ -29,7 +29,6 @@ public class LinkedListNode {
      */
     public static void dincrList(LinkedListNode listNode, int modification) {
         // todo: recursive approach
-        // todo: move this to LinkedListNode class
         LinkedListNode current = listNode;
 
         while (current != null) {
@@ -45,7 +44,6 @@ public class LinkedListNode {
      * @param listNode     the head of the linked list that should be copied and modified
      * @param modification the integer value that should be added to all the nodes
      */
-    // todo: fix tail visibility
     public static LinkedListNode incrList(LinkedListNode listNode, int modification) {
         LinkedListNode result = new LinkedListNode(listNode.getValue() + modification, null);
 

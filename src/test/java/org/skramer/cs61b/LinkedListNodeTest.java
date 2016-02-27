@@ -27,7 +27,7 @@ public class LinkedListNodeTest {
 
         node.insertAfter(10);
 
-        assertEquals(10, node.tail.getValue());
+        assertEquals(10, node.getElement(1));
     }
 
     @Test
@@ -38,24 +38,10 @@ public class LinkedListNodeTest {
     }
 
     @Test
-    public void theSizeOfTheListFromSpecificNodeIsCalculated() {
-        LinkedListNode listNode = this.linkedList;
-
-        assertEquals(2, listNode.tail.size());
-    }
-
-    @Test
     public void theSizeOfTheListIsCalculatedIterativeApproach() {
         LinkedListNode listNode = linkedList;
 
         assertEquals(3, listNode.sizeIterative());
-    }
-
-    @Test
-    public void theSizeOfTheListFromSpecificNodeIsCalculatedIterativeApproach() {
-        LinkedListNode listNode = this.linkedList;
-
-        assertEquals(2, listNode.tail.sizeIterative());
     }
 
     @Test
@@ -69,7 +55,7 @@ public class LinkedListNodeTest {
     public void nthElementFromSpecificNodeCanBeRequested() {
         LinkedListNode listNode = this.linkedList;
 
-        assertEquals(15, listNode.tail.getElement(1));
+        assertEquals(15, listNode.getElement(2));
     }
 
     @Test(expected = NoSuchElementException.class)
