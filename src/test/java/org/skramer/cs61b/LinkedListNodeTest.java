@@ -91,7 +91,23 @@ public class LinkedListNodeTest {
     public void allNodesGetModifiedImmutably() {
         LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
 
-        LinkedListNode modifiedList = LinkedListNode.incrList(listNode, 2);
+        LinkedListNode modifiedList = LinkedListNode.incrListIterative(listNode, 2);
+
+        assertEquals(5, listNode.getElement(0));
+        assertEquals(10, listNode.getElement(1));
+        assertEquals(15, listNode.getElement(2));
+
+        assertNotNull(modifiedList);
+        assertEquals(7, modifiedList.getElement(0));
+        assertEquals(12, modifiedList.getElement(1));
+        assertEquals(17, modifiedList.getElement(2));
+    }
+
+    @Test
+    public void allNodesGetModifiedImmutablyRecursive() {
+        LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
+
+        LinkedListNode modifiedList = LinkedListNode.incrListRecursive(listNode, 2);
 
         assertEquals(5, listNode.getElement(0));
         assertEquals(10, listNode.getElement(1));

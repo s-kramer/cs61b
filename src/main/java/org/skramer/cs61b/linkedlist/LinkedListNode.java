@@ -126,11 +126,12 @@ public class LinkedListNode {
     /**
      * Increments all the nodes of @code listNode by @code modification in a immutable way.
      * The result list is independent of @code listNode.
+     * This method uses iterative approach.
      *
      * @param listNode     the head of the linked list that should be copied and modified
      * @param modification the integer value that should be added to all the nodes
      */
-    public static LinkedListNode incrList(LinkedListNode listNode, int modification) {
+    public static LinkedListNode incrListIterative(LinkedListNode listNode, int modification) {
         LinkedListNode result = new LinkedListNode(listNode.getValue() + modification, null);
 
         LinkedListNode current_source = listNode.tail;
@@ -143,6 +144,23 @@ public class LinkedListNode {
         }
 
         return result;
+    }
+
+    /**
+     * Increments all the nodes of @code listNode by @code modification in a immutable way.
+     * The result list is independent of @code listNode.
+     * This method uses recursive approach.
+     *
+     * @param listNode     the head of the linked list that should be copied and modified
+     * @param modification the integer value that should be added to all the nodes
+     */
+    public static LinkedListNode incrListRecursive(LinkedListNode listNode, int modification) {
+        if (listNode.tail == null) {
+            return new LinkedListNode(listNode.getValue() + modification, null);
+        }
+
+        return new LinkedListNode(listNode.getValue() + modification,
+                                  incrListRecursive(listNode.tail, modification));
     }
 
     /**
