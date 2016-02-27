@@ -1,7 +1,7 @@
 package org.skramer.cs61b.linkedlist;
 
 /**
- * A node object to be used by the LinkedList class
+ * A linked list node
  */
 public class LinkedListNode {
     final int value;
