@@ -257,4 +257,25 @@ public class LinkedListNode {
 
         return previous;
     }
+
+    /**
+     * Returns a space-separated list of values in reversed order.
+     *
+     * @return String with String representations of all the nodes in the list in reverse order
+     */
+    public String getReversedStringRepresentation() {
+        return getReversedStringRepresentationImpl().toString();
+    }
+
+    private StringBuilder getReversedStringRepresentationImpl() {
+        if (tail == null) {
+            return new StringBuilder(Integer.toString(value));
+        }
+
+        StringBuilder representation = tail.getReversedStringRepresentationImpl();
+        representation.append(" ");
+        representation.append(value);
+
+        return representation;
+    }
 }

@@ -165,5 +165,13 @@ public class LinkedListNodeTest {
         assertEquals(10, reversed.getElement(1));
         assertEquals(5, reversed.getElement(2));
     }
+
+    @Test
+    public void generatesReversedStringDescriptorList() {
+        LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
+        String expectation = String.join(" ", Arrays.asList("15", "10", "5"));
+
+        assertEquals(expectation, listNode.getReversedStringRepresentation());
+    }
 }
 
