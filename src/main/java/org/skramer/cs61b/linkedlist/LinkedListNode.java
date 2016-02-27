@@ -4,7 +4,7 @@ package org.skramer.cs61b.linkedlist;
  * A linked list node
  */
 public class LinkedListNode {
-    final int value;
+    public final int value;
     public LinkedListNode tail;
 
     /**
@@ -16,5 +16,29 @@ public class LinkedListNode {
     public LinkedListNode(int value, LinkedListNode next) {
         this.tail = next;
         this.value = value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LinkedListNode node = (LinkedListNode) o;
+
+        return value == node.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return value;
+    }
+
+    /**
+     * Inserts a new LinkedListNode after this one
+     *
+     * @param value The value of the node that will be added after current node
+     */
+    public void insertAfter(int value) {
+        tail = new LinkedListNode(value, tail);
     }
 }
