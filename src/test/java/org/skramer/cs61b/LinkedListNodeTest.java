@@ -66,10 +66,21 @@ public class LinkedListNodeTest {
     }
 
     @Test
-    public void allNodesGetModifiedInPlace() {
+    public void allNodesGetModifiedInPlaceIterative() {
         LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
 
-        LinkedListNode.dincrList(listNode, 2);
+        LinkedListNode.dincrListIterative(listNode, 2);
+
+        assertEquals(7, listNode.getElement(0));
+        assertEquals(12, listNode.getElement(1));
+        assertEquals(17, listNode.getElement(2));
+    }
+
+    @Test
+    public void allNodesGetModifiedInPlaceRecursive() {
+        LinkedListNode listNode = this.linkedList;
+
+        LinkedListNode.dincrListRecursive(listNode, 2);
 
         assertEquals(7, listNode.getElement(0));
         assertEquals(12, listNode.getElement(1));
