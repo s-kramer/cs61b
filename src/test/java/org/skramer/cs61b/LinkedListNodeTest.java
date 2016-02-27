@@ -83,7 +83,7 @@ public class LinkedListNodeTest {
     public void allNodesGetModifiedInPlace() {
         LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
 
-        LinkedListUtil.dincrList(listNode, 2);
+        LinkedListNode.dincrList(listNode, 2);
 
         assertEquals(7, listNode.getElement(0));
         assertEquals(12, listNode.getElement(1));
@@ -94,7 +94,7 @@ public class LinkedListNodeTest {
     public void allNodesGetModifiedImmutably() {
         LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
 
-        LinkedListNode modifiedList = LinkedListUtil.incrList(listNode, 2);
+        LinkedListNode modifiedList = LinkedListNode.incrList(listNode, 2);
 
         assertEquals(5, listNode.getElement(0));
         assertEquals(10, listNode.getElement(1));
