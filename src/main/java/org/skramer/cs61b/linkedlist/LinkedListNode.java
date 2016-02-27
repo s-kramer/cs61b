@@ -91,7 +91,6 @@ public class LinkedListNode {
      * @return the value associated with the i-th node
      * @throws NoSuchElementException if requested index does not exist
      */
-    // todo: recursive approach
     public int getElement(int i) {
         LinkedListNode current = this;
         while (i > 0 && current != null) {
@@ -104,6 +103,26 @@ public class LinkedListNode {
         } else {
             throw new NoSuchElementException();
         }
+    }
+
+    /**
+     * Finds the n-th subsequent element counting from the current node and returns its value.
+     * This method uses recursive approach.
+     *
+     * @param i the index of the node that should be returned.
+     * @return the value associated with the i-th node
+     * @throws NoSuchElementException if requested index does not exist
+     */
+    public int getElementRecursive(int i) {
+        if (i == 0) {
+            return value;
+        }
+
+        if (tail == null) {
+            throw new NoSuchElementException();
+        }
+
+        return tail.getElementRecursive(i - 1);
     }
 
     /**

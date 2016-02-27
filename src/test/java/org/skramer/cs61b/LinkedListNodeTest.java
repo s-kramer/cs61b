@@ -52,10 +52,26 @@ public class LinkedListNodeTest {
     }
 
     @Test
+    public void nthElementCanBeRequestedRecursive() {
+        LinkedListNode listNode = this.linkedList;
+
+        assertEquals(5, listNode.getElementRecursive(0));
+        assertEquals(10, listNode.getElementRecursive(1));
+        assertEquals(15, listNode.getElementRecursive(2));
+    }
+
+    @Test
     public void nthElementFromSpecificNodeCanBeRequested() {
         LinkedListNode listNode = this.linkedList;
 
         assertEquals(15, listNode.getElement(2));
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void requestingNonExistingElementThrowsRecursive() {
+        LinkedListNode listNode = this.linkedList;
+
+        assertEquals(10, listNode.getElement(15));
     }
 
     @Test(expected = NoSuchElementException.class)
