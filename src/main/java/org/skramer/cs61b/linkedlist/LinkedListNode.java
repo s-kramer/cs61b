@@ -278,4 +278,22 @@ public class LinkedListNode {
 
         return representation;
     }
+
+    /**
+     * Concatenates @code lhs and @code rhs
+     *
+     * @param lhs linked list to be concatenated. Rhs will be appended to this list
+     * @param rhs linked list to be concatenated. This list will be appended to @code lhs
+     * @return the head of a list that is the concatenation of @code lhs and @code rhs
+     */
+    public static LinkedListNode catenate(LinkedListNode lhs, LinkedListNode rhs) {
+        LinkedListNode lhsTail = lhs;
+        while (lhsTail.tail != null) {
+            lhsTail = lhsTail.tail;
+        }
+
+        lhsTail.tail = rhs;
+
+        return lhs;
+    }
 }
