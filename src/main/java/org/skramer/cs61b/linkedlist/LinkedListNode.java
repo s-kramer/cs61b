@@ -28,6 +28,15 @@ public class LinkedListNode {
     }
 
     @Override
+    public String toString() {
+        if (tail == null) {
+            return Integer.toString(value);
+        }
+
+        return value + " " + tail.toString();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

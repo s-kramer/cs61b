@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.skramer.cs61b.linkedlist.LinkedListNode;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertEquals;
@@ -133,6 +134,14 @@ public class LinkedListNodeTest {
         assertEquals(7, modifiedList.getElement(0));
         assertEquals(12, modifiedList.getElement(1));
         assertEquals(17, modifiedList.getElement(2));
+    }
+
+    @Test
+    public void toStringGeneratesSpaceSeparatedValues() {
+        LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
+        String expectation = String.join(" ", Arrays.asList("5", "10", "15"));
+
+        assertEquals(expectation, listNode.toString());
     }
 }
 
