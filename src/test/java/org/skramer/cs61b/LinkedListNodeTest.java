@@ -44,6 +44,20 @@ public class LinkedListNodeTest {
     }
 
     @Test
+    public void theSizeOfTheListIsCalculatedIterativeApproach() {
+        LinkedListNode listNode = linkedList;
+
+        assertEquals(3, listNode.sizeIterative());
+    }
+
+    @Test
+    public void theSizeOfTheListFromSpecificNodeIsCalculatedIterativeApproach() {
+        LinkedListNode listNode = this.linkedList;
+
+        assertEquals(2, listNode.tail.sizeIterative());
+    }
+
+    @Test
     public void nthElementCanBeRequested() {
         LinkedListNode listNode = this.linkedList;
 

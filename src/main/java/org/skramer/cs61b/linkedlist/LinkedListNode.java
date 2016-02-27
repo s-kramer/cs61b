@@ -55,16 +55,34 @@ public class LinkedListNode {
     /**
      * Returns the size of the list from the current node.
      * The list terminator is considered to be a null object.
+     * This method uses recursive approach.
      *
      * @return the number of nodes from the current node to the terminator node (null object).
      */
     public int size() {
-        // todo: alternative approach
         if (tail == null) {
             return 1;
         }
 
         return 1 + tail.size();
+    }
+
+    /**
+     * Counts the size of the list from the current node to the terminator node.
+     * The list terminator is considered to be a null object.
+     * This method uses iterative approach.
+     *
+     * @return the number of nodes from the current node to the terminator node (null object).
+     */
+    public int sizeIterative() {
+        LinkedListNode current = this;
+        int size = 0;
+        while (current != null) {
+            size += 1;
+            current = current.tail;
+        }
+
+        return size;
     }
 
     /**

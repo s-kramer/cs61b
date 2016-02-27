@@ -22,4 +22,6 @@ public class LinkedListUtil {
             current = current.tail;
         }
     }
+
+    // todo: immutable approach
 }
