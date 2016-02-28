@@ -211,7 +211,7 @@ public class LinkedListNodeTest {
     }
 
     @Test
-    public void listsGetContatenatedInAImmutableWayIterative() {
+    public void listsGetContatenatedInAnImmutableWayIterative() {
         LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
         LinkedListNode listNode2 = new LinkedListNode(6, new LinkedListNode(11, new LinkedListNode(16, null)));
 
