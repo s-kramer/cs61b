@@ -25,10 +25,10 @@ public class LinkedListNodeTest {
     @Test
     public void nodeCanBeInsertedAfterAnotherNode() {
         LinkedListNode node = new LinkedListNode(5, new LinkedListNode(15, null));
-       
+
         node.insertAfter(10);
 
-        assertEquals(3, node.sizeIterative());
+        assertEquals(3, node.size());
         assertEquals(5, node.getElement(0));
         assertEquals(10, node.getElement(1));
         assertEquals(15, node.getElement(2));
@@ -38,14 +38,14 @@ public class LinkedListNodeTest {
     public void theSizeOfTheListIsCalculated() {
         LinkedListNode listNode = linkedList;
 
-        assertEquals(3, listNode.size());
+        assertEquals(3, listNode.sizeRecursive());
     }
 
     @Test
     public void theSizeOfTheListIsCalculatedIterativeApproach() {
         LinkedListNode listNode = linkedList;
 
-        assertEquals(3, listNode.sizeIterative());
+        assertEquals(3, listNode.size());
     }
 
     @Test
@@ -151,7 +151,7 @@ public class LinkedListNodeTest {
     public void listCanBeReversed() {
         LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
 
-        LinkedListNode reversed = LinkedListNode.reverse(listNode);
+        LinkedListNode reversed = LinkedListNode.reverseRecursive(listNode);
 
         assertEquals(15, reversed.getElement(0));
         assertEquals(10, reversed.getElement(1));
@@ -162,7 +162,7 @@ public class LinkedListNodeTest {
     public void listCanBeReversedIterative() {
         LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
 
-        LinkedListNode reversed = LinkedListNode.reverseIterative(listNode);
+        LinkedListNode reversed = LinkedListNode.reverse(listNode);
 
         assertEquals(15, reversed.getElement(0));
         assertEquals(10, reversed.getElement(1));
@@ -182,7 +182,7 @@ public class LinkedListNodeTest {
         LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
         LinkedListNode listNode2 = new LinkedListNode(6, new LinkedListNode(11, new LinkedListNode(16, null)));
 
-        LinkedListNode result = LinkedListNode.catenate(listNode, listNode2);
+        LinkedListNode result = LinkedListNode.dcatenate(listNode, listNode2);
 
         assertEquals(5, result.getElement(0));
         assertEquals(10, result.getElement(1));
@@ -199,8 +199,8 @@ public class LinkedListNodeTest {
 
         LinkedListNode result = LinkedListNode.catenateRecursive(listNode, listNode2);
 
-        assertEquals(3, listNode.size());
-        assertEquals(3, listNode2.size());
+        assertEquals(3, listNode.sizeRecursive());
+        assertEquals(3, listNode2.sizeRecursive());
 
         assertEquals(5, result.getElement(0));
         assertEquals(10, result.getElement(1));
@@ -217,12 +217,12 @@ public class LinkedListNodeTest {
 
         LinkedListNode result = LinkedListNode.catenateIterative(listNode, listNode2);
 
-        assertEquals(3, listNode.size());
+        assertEquals(3, listNode.sizeRecursive());
         assertEquals(5, listNode.getElement(0));
         assertEquals(10, listNode.getElement(1));
         assertEquals(15, listNode.getElement(2));
 
-        assertEquals(3, listNode2.size());
+        assertEquals(3, listNode2.sizeRecursive());
         assertEquals(6, listNode2.getElement(0));
         assertEquals(11, listNode2.getElement(1));
         assertEquals(16, listNode2.getElement(2));
