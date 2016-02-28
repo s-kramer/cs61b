@@ -24,11 +24,14 @@ public class LinkedListNodeTest {
 
     @Test
     public void nodeCanBeInsertedAfterAnotherNode() {
-        LinkedListNode node = new LinkedListNode(5, null);
-
+        LinkedListNode node = new LinkedListNode(5, new LinkedListNode(15, null));
+       
         node.insertAfter(10);
 
+        assertEquals(3, node.sizeIterative());
+        assertEquals(5, node.getElement(0));
         assertEquals(10, node.getElement(1));
+        assertEquals(15, node.getElement(2));
     }
 
     @Test
