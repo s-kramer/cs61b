@@ -190,11 +190,39 @@ public class LinkedListNodeTest {
     }
 
     @Test
-    public void listsGetContatenatedInAMutableWayRecursive() {
+    public void listsGetContatenatedInAnImmutableWayRecursive() {
         LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
         LinkedListNode listNode2 = new LinkedListNode(6, new LinkedListNode(11, new LinkedListNode(16, null)));
 
         LinkedListNode result = LinkedListNode.catenateRecursive(listNode, listNode2);
+
+        assertEquals(3, listNode.size());
+        assertEquals(3, listNode2.size());
+
+        assertEquals(5, result.getElement(0));
+        assertEquals(10, result.getElement(1));
+        assertEquals(15, result.getElement(2));
+        assertEquals(6, result.getElement(3));
+        assertEquals(11, result.getElement(4));
+        assertEquals(16, result.getElement(5));
+    }
+
+    @Test
+    public void listsGetContatenatedInAImmutableWayIterative() {
+        LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
+        LinkedListNode listNode2 = new LinkedListNode(6, new LinkedListNode(11, new LinkedListNode(16, null)));
+
+        LinkedListNode result = LinkedListNode.catenateIterative(listNode, listNode2);
+
+        assertEquals(3, listNode.size());
+        assertEquals(5, listNode.getElement(0));
+        assertEquals(10, listNode.getElement(1));
+        assertEquals(15, listNode.getElement(2));
+
+        assertEquals(3, listNode2.size());
+        assertEquals(6, listNode2.getElement(0));
+        assertEquals(11, listNode2.getElement(1));
+        assertEquals(16, listNode2.getElement(2));
 
         assertEquals(5, result.getElement(0));
         assertEquals(10, result.getElement(1));

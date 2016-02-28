@@ -305,18 +305,36 @@ public class LinkedListNode {
      * @return the head of a list that is the concatenation of @code lhs and @code rhs
      */
     public static LinkedListNode catenateRecursive(LinkedListNode lhs, LinkedListNode rhs) {
-        return catenateRecursiveImpl(lhs, rhs);
-    }
-
-    private static LinkedListNode catenateRecursiveImpl(LinkedListNode lhs, LinkedListNode rhs) {
         if (lhs != null) {
-            return new LinkedListNode(lhs.getValue(), catenateRecursiveImpl(lhs.tail, rhs));
+            return new LinkedListNode(lhs.getValue(), catenateRecursive(lhs.tail, rhs));
         }
 
         if (rhs.tail != null) {
-            return new LinkedListNode(rhs.getValue(), catenateRecursiveImpl(null, rhs.tail));
+            return new LinkedListNode(rhs.getValue(), catenateRecursive(null, rhs.tail));
         }
 
         return new LinkedListNode(rhs.getValue(), null);
+    }
+
+    /**
+     * Concatenates @code lhs and @code rhs in a immutable way.
+     *
+     * @param lhs the head of the LinkedList to be concatenated.
+     * @param rhs the head of the second LinkedList to be concatenated.
+     * @return the head of the concatenated list
+     */
+    public static LinkedListNode catenateIterative(LinkedListNode lhs, LinkedListNode rhs) {
+        LinkedListNode current = new LinkedListNode(lhs.getValue(), null);
+        LinkedListNode head = current;
+        for (lhs = lhs.tail; lhs != null; current = current.tail, lhs = lhs.tail) {
+            current.tail = new LinkedListNode(lhs.getValue(), null);
+        }
+
+        for (; rhs != null; current = current.tail, rhs = rhs.tail) {
+            current.tail = new LinkedListNode(rhs.getValue(), null);
+        }
+
+        return head;
+
     }
 }
