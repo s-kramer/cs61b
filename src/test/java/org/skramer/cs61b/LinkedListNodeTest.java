@@ -247,5 +247,18 @@ public class LinkedListNodeTest {
         assertEquals(10, front.getElement(2));
         assertEquals(15, front.getElement(3));
     }
+
+    @Test
+    public void elementsCanBeInsertedToBeBackOfTheList() {
+        LinkedListNode listNode = linkedList;
+
+        LinkedListNode front = LinkedListNode.insertBack(linkedList, new LinkedListNode(0, null));
+
+        assertEquals(4, front.size());
+        assertEquals(5, front.getElement(0));
+        assertEquals(10, front.getElement(1));
+        assertEquals(15, front.getElement(2));
+        assertEquals(0, front.getElement(3));
+    }
 }
 

@@ -114,8 +114,7 @@ public class LinkedListNode {
      */
     public static LinkedListNode reverseRecursive(LinkedListNode node) {
         LinkedListNode initialTail = node;
-        while (initialTail.tail != null)
-            initialTail = initialTail.tail;
+        initialTail = moveToTheEndOfTheList(initialTail);
 
         reverseImpl(node);
 
@@ -142,9 +141,7 @@ public class LinkedListNode {
      */
     public static LinkedListNode dcatenate(LinkedListNode lhs, LinkedListNode rhs) {
         LinkedListNode lhsTail = lhs;
-        while (lhsTail.tail != null) {
-            lhsTail = lhsTail.tail;
-        }
+        lhsTail = moveToTheEndOfTheList(lhsTail);
 
         lhsTail.tail = rhs;
 
@@ -202,6 +199,30 @@ public class LinkedListNode {
     public static LinkedListNode insertFront(LinkedListNode linkedList, LinkedListNode element) {
         element.tail = linkedList;
         return element;
+    }
+
+    /**
+     * Inserts the @code element to the back of the @code linkedList.
+     *
+     * @param linkedList the linked list that should be extended with @code element
+     * @param element    the LinkedListNode that should be the new tail of the list
+     * @return the head of the modified list
+     */
+    public static LinkedListNode insertBack(LinkedListNode linkedList, LinkedListNode element) {
+        LinkedListNode current = linkedList;
+        // todo: extract this
+        current = moveToTheEndOfTheList(current);
+
+        current.tail = element;
+
+        return linkedList;
+    }
+
+    private static LinkedListNode moveToTheEndOfTheList(LinkedListNode current) {
+        while (current.tail != null) {
+            current = current.tail;
+        }
+        return current;
     }
 
     /**
@@ -360,4 +381,5 @@ public class LinkedListNode {
 
         return representation;
     }
+
 }
