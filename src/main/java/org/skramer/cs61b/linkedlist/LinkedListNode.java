@@ -189,7 +189,19 @@ public class LinkedListNode {
         }
 
         return head;
+    }
 
+    /**
+     * Inserts the @code element to the front of the @code linkedList.
+     * The @code linkedList becomes the tail of the element.
+     *
+     * @param linkedList the linked list that should be prepended with @code element
+     * @param element    the LinkedListNode that should be the new head of the list
+     * @return the head of the modified list
+     */
+    public static LinkedListNode insertFront(LinkedListNode linkedList, LinkedListNode element) {
+        element.tail = linkedList;
+        return element;
     }
 
     /**
@@ -242,6 +254,8 @@ public class LinkedListNode {
     public int hashCode() {
         return value;
     }
+
+    // todo: insertFront, insertBack, find, deleteNth
 
     /**
      * Inserts a new LinkedListNode after this one
@@ -346,5 +360,4 @@ public class LinkedListNode {
 
         return representation;
     }
-
 }

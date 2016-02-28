@@ -234,5 +234,18 @@ public class LinkedListNodeTest {
         assertEquals(11, result.getElement(4));
         assertEquals(16, result.getElement(5));
     }
+
+    @Test
+    public void elementsCanBeInsertedInFrontOfTheList() {
+        LinkedListNode listNode = linkedList;
+
+        LinkedListNode front = LinkedListNode.insertFront(linkedList, new LinkedListNode(0, null));
+
+        assertEquals(4, front.size());
+        assertEquals(0, front.getElement(0));
+        assertEquals(5, front.getElement(1));
+        assertEquals(10, front.getElement(2));
+        assertEquals(15, front.getElement(3));
+    }
 }
 
