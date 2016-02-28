@@ -188,5 +188,20 @@ public class LinkedListNodeTest {
         assertEquals(11, result.getElement(4));
         assertEquals(16, result.getElement(5));
     }
+
+    @Test
+    public void listsGetContatenatedInAMutableWayRecursive() {
+        LinkedListNode listNode = new LinkedListNode(5, new LinkedListNode(10, new LinkedListNode(15, null)));
+        LinkedListNode listNode2 = new LinkedListNode(6, new LinkedListNode(11, new LinkedListNode(16, null)));
+
+        LinkedListNode result = LinkedListNode.catenateRecursive(listNode, listNode2);
+
+        assertEquals(5, result.getElement(0));
+        assertEquals(10, result.getElement(1));
+        assertEquals(15, result.getElement(2));
+        assertEquals(6, result.getElement(3));
+        assertEquals(11, result.getElement(4));
+        assertEquals(16, result.getElement(5));
+    }
 }
 

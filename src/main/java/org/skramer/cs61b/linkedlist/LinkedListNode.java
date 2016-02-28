@@ -296,4 +296,27 @@ public class LinkedListNode {
 
         return lhs;
     }
+
+    /**
+     * Concatenates @code lhs and @code rhs using the recursive approach
+     *
+     * @param lhs linked list to be concatenated. Rhs will be appended to this list
+     * @param rhs linked list to be concatenated. This list will be appended to @code lhs
+     * @return the head of a list that is the concatenation of @code lhs and @code rhs
+     */
+    public static LinkedListNode catenateRecursive(LinkedListNode lhs, LinkedListNode rhs) {
+        return catenateRecursiveImpl(lhs, rhs);
+    }
+
+    private static LinkedListNode catenateRecursiveImpl(LinkedListNode lhs, LinkedListNode rhs) {
+        if (lhs != null) {
+            return new LinkedListNode(lhs.getValue(), catenateRecursiveImpl(lhs.tail, rhs));
+        }
+
+        if (rhs.tail != null) {
+            return new LinkedListNode(rhs.getValue(), catenateRecursiveImpl(null, rhs.tail));
+        }
+
+        return new LinkedListNode(rhs.getValue(), null);
+    }
 }
