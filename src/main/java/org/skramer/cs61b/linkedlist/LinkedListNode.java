@@ -210,7 +210,6 @@ public class LinkedListNode {
      */
     public static LinkedListNode insertBack(LinkedListNode linkedList, LinkedListNode element) {
         LinkedListNode current = linkedList;
-        // todo: extract this
         current = moveToTheEndOfTheList(current);
 
         current.tail = element;
@@ -276,7 +275,7 @@ public class LinkedListNode {
         return value;
     }
 
-    // todo: insertFront, insertBack, find, deleteNth
+    // todo: find, deleteNth
 
     /**
      * Inserts a new LinkedListNode after this one
