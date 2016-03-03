@@ -246,6 +246,7 @@ public class LinkedListNode {
 
     /**
      * Sets the value associated with this node
+     * This is required only because of the dincrList methods. Otherwise LinkedListNode can be made immutable
      */
     public void setValue(int value) {
         this.value = value;
