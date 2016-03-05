@@ -6,7 +6,8 @@ import java.util.NoSuchElementException;
  * A linked list node
  */
 public class LinkedListNode {
-    private int value;
+    // This field could be made final if the dinctrList algorithms were not required.
+    /* final */ private int value;
     private LinkedListNode tail;
 
     /**
@@ -21,7 +22,7 @@ public class LinkedListNode {
         LinkedListNode current = listNode;
 
         while (current != null) {
-            current.setValue(current.getValue() + modification);
+            current.value += modification;
             current = current.tail;
         }
     }
@@ -39,7 +40,7 @@ public class LinkedListNode {
             return;
         }
 
-        listNode.setValue(listNode.getValue() + modification);
+        listNode.value += modification;
         dincrListRecursive(listNode.tail, modification);
     }
 
@@ -242,14 +243,6 @@ public class LinkedListNode {
      */
     public int getValue() {
         return value;
-    }
-
-    /**
-     * Sets the value associated with this node
-     * This is required only because of the dincrList methods. Otherwise LinkedListNode can be made immutable
-     */
-    public void setValue(int value) {
-        this.value = value;
     }
 
     @Override
