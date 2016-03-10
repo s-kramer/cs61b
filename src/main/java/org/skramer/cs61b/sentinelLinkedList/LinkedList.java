@@ -1,5 +1,8 @@
 package org.skramer.cs61b.sentinelLinkedList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by skramer on 3/10/16.
  * A linked list implementation with a sentinel node
@@ -51,5 +54,16 @@ public class LinkedList {
     public void insertFront(int i) {
         sentinelNode.next = new LinkedListNode(i, sentinelNode.next);
         size += 1;
+    }
+
+    // todo: do the docs
+    public List<Integer> getValues() {
+        LinkedListNode it = sentinelNode.next;
+        List<Integer> result = new ArrayList<>(size);
+        for (; it != sentinelNode; it = it.next) {
+            result.add(it.getValue());
+        }
+
+        return result;
     }
 }
