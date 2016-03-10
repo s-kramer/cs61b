@@ -1,0 +1,24 @@
+package org.skramer.cs61b.sentinelLinkedList;
+
+import org.junit.Test;
+
+import static junit.framework.Assert.assertEquals;
+
+/**
+ * Created by skramer on 3/10/16.
+ * Unit tests for LinkedList - the linked list implementation with a sentinel node
+ */
+public class LinkedListTest {
+
+    @Test
+    public void EmptyListCreationIsPossible() {
+        LinkedList list = new LinkedList();
+        assertEquals(0, list.getSize());
+    }
+
+    @Test
+    public void SingleNodeCreation() {
+        LinkedList list = new LinkedList(5);
+        assertEquals(1, list.getSize());
+    }
+}
