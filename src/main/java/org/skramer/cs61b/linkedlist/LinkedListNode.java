@@ -7,42 +7,8 @@ import java.util.NoSuchElementException;
  */
 public class LinkedListNode {
     // This field could be made final if the dinctrList algorithms were not required.
-    /* final */ private int value;
+    final private int value;
     private LinkedListNode tail;
-
-    /**
-     * Increments all the nodes of @code listNode by @code modification in a mutable (destructive) way.
-     * The modification is made in place, that is listNode will be modified after this method returns.
-     * This method uses iterative approach.
-     *
-     * @param listNode     the head of the linked list that should be modified
-     * @param modification the integer value that should be added to all the nodes
-     */
-    public static void dincrListIterative(LinkedListNode listNode, int modification) {
-        LinkedListNode current = listNode;
-
-        while (current != null) {
-            current.value += modification;
-            current = current.tail;
-        }
-    }
-
-    /**
-     * Increments all the nodes of @code listNode by @code modification in a mutable way.
-     * The modification is made in place, that is @code listNode will be modified after this method returns.
-     * This method uses recursive approach.
-     *
-     * @param listNode     the list that should be modified
-     * @param modification the value that should be added to all the nodes of the list
-     */
-    public static void dincrListRecursive(LinkedListNode listNode, int modification) {
-        if (listNode == null) {
-            return;
-        }
-
-        listNode.value += modification;
-        dincrListRecursive(listNode.tail, modification);
-    }
 
     /**
      * Increments all the nodes of @code listNode by @code modification in a immutable way.
