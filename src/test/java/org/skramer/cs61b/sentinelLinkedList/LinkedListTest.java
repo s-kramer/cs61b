@@ -21,4 +21,14 @@ public class LinkedListTest {
         LinkedList list = new LinkedList(5);
         assertEquals(1, list.getSize());
     }
+
+    @Test
+    public void nodesCanBeAddedToTheFrontOfTheList() {
+        LinkedList list = new LinkedList();
+        list.insertFront(5);
+        assertEquals(1, list.getSize());
+
+        list.insertFront(10);
+        assertEquals(2, list.getSize());
+    }
 }

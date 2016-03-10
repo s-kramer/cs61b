@@ -5,7 +5,7 @@ package org.skramer.cs61b.sentinelLinkedList;
  * A linked list implementation with a sentinel node
  */
 public class LinkedList {
-    private LinkedListNode listNode;
+    private LinkedListNode sentinelNode;
     private int size;
     private static int SENTINEL_NODE_VALUE = Integer.MAX_VALUE;
 
@@ -15,17 +15,17 @@ public class LinkedList {
      * @param value the value of the first node of the newly created list
      */
     public LinkedList(int value) {
+        sentinelNode = makeSentinelNode();
+        sentinelNode.next = new LinkedListNode(value);
         size = 1;
-        listNode = makeSentinelNode();
-        listNode.next = new LinkedListNode(value);
     }
 
     /**
      * Creates an empty linked list
      */
     public LinkedList() {
+        sentinelNode = makeSentinelNode();
         size = 0;
-        listNode = makeSentinelNode();
     }
 
     private LinkedListNode makeSentinelNode() {
@@ -41,5 +41,15 @@ public class LinkedList {
      */
     public int getSize() {
         return size;
+    }
+
+    /**
+     * Inserts a new node with value i to the front of the list
+     *
+     * @param i the value to be added to the front of the list
+     */
+    public void insertFront(int i) {
+        sentinelNode.next = new LinkedListNode(i, sentinelNode.next);
+        size += 1;
     }
 }

@@ -8,6 +8,10 @@ package org.skramer.cs61b.sentinelLinkedList;
 class LinkedListNode {
     public LinkedListNode next;
 
+    public LinkedListNode(int value, LinkedListNode next) {
+        this.next = next;
+    }
+
     public LinkedListNode(int value) {
 
     }
