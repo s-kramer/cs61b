@@ -1,8 +1,7 @@
-package org.skramer.cs61b;
+package org.skramer.cs61b.linkedlist;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.skramer.cs61b.linkedlist.LinkedListNode;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
