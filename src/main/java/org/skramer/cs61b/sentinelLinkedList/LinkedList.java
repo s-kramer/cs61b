@@ -143,7 +143,7 @@ public class LinkedList {
                                                              n, size));
         }
 
-        if (n < size / 2) {
+        if (n <= size / 2) {
             return proceedForward(n);
         } else {
             final int lastIndex = size - 1;
@@ -170,4 +170,14 @@ public class LinkedList {
     public int getNodeValue(int i) {
         return getNthNode(i).getValue();
     }
+
+    public void insertNode(int n, int value) {
+        LinkedListNode previousNth = getNthNode(n);
+        LinkedListNode previousNMinus1th = previousNth.prev;
+
+        previousNth.prev.next = new LinkedListNode(previousNth, value, previousNth.prev);
+        previousNth.prev = previousNMinus1th.next;
+    }
+
+    // todo: generify
 }

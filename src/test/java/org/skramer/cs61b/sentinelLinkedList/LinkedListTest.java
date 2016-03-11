@@ -134,4 +134,18 @@ public class LinkedListTest {
     public void valueRequestForIncorrectNodeThrows() {
         assertEquals(1, multiElementList.getNodeValue(11));
     }
+
+    @Test
+    public void nodeCanBeInsertedInTheMiddleOfTheList() {
+        int index = 2;
+        int value = 15;
+        multiElementList.insertNode(index, value);
+        assertEquals(Arrays.asList(1, 2, 15, 3, 4, 5), multiElementList.getValues());
+
+        multiElementList.removeFront();
+        assertEquals(Arrays.asList(2, 15, 3, 4, 5), multiElementList.getValues());
+
+        multiElementList.removeNode(2);
+        assertEquals(Arrays.asList(2, 15, 4, 5), multiElementList.getValues());
+    }
 }
