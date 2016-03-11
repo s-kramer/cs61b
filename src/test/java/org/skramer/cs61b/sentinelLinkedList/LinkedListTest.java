@@ -15,10 +15,12 @@ import static junit.framework.Assert.assertEquals;
 public class LinkedListTest {
 
     private LinkedList list;
+    private LinkedList multiElementList;
 
     @Before
     public void setUp() throws Exception {
         list = new LinkedList();
+        multiElementList = new LinkedList(1, 2, 3, 4, 5);
     }
 
     @Test
@@ -57,8 +59,16 @@ public class LinkedListTest {
 
     @Test
     public void listWithMultipleNodesCanBeCreatedAtOnce() {
-        LinkedList multielementList = new LinkedList(1, 2, 3, 4, 5);
-        assertEquals(5, multielementList.getSize());
-        assertEquals(Arrays.asList(1, 2, 3, 4, 5), multielementList.getValues());
+        LinkedList multiElementList = new LinkedList(1, 2, 3, 4, 5);
+        assertEquals(5, multiElementList.getSize());
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5), multiElementList.getValues());
     }
+
+    @Test
+    public void frontNodeCanBeRemoved() {
+        multiElementList.removeFront();
+        assertEquals(4, multiElementList.getSize());
+        assertEquals(Arrays.asList(2, 3, 4, 5), multiElementList.getValues());
+    }
+
 }

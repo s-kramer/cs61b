@@ -8,9 +8,9 @@ import java.util.List;
  * A linked list implementation with a sentinel node
  */
 public class LinkedList {
+    private static int SENTINEL_NODE_VALUE = Integer.MAX_VALUE;
     private LinkedListNode sentinelNode;
     private int size;
-    private static int SENTINEL_NODE_VALUE = Integer.MAX_VALUE;
 
     /**
      * Creates a new linked list. Each of the provided arguments will be used to create a subsequent node of the list
@@ -23,7 +23,6 @@ public class LinkedList {
             insertBack(i);
         }
     }
-
 
     /**
      * Creates a linked list with a single node which's value is value
@@ -106,5 +105,13 @@ public class LinkedList {
 
     private LinkedListNode getFront() {
         return sentinelNode.next;
+    }
+
+    /**
+     * Removes the first node of the list
+     */
+    public void removeFront() {
+        sentinelNode.next = getFront().next;
+        size -= 1;
     }
 }
