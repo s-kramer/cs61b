@@ -138,10 +138,13 @@ public class LinkedList {
     }
 
     private LinkedListNode getIth(int i) {
+        if (i < 0 || (size > 0 && i >= size)) {
+            throw new IllegalArgumentException(String.format("List element %d exceeds the size of the list which is %d",
+                                                             i, size));
+        }
+
         if (size == 0) {
-//            String exceptionMessage = String.format("List element %d exceeds the size of the list which is %d", i, size);
-            String exceptionMessage = ("The list is empty");
-            throw new IndexOutOfBoundsException(exceptionMessage);
+            throw new IndexOutOfBoundsException("The list is empty");
         }
         // todo: move from front and from back
         LinkedListNode it = getListFront();

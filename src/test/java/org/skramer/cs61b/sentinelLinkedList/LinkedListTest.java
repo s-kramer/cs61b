@@ -92,7 +92,7 @@ public class LinkedListTest {
         assertEquals(0, singletonList.getSize());
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void frontNodeRemovalOfEmptyListThrows() {
         emptyList.removeBack();
     }
@@ -107,5 +107,15 @@ public class LinkedListTest {
         multiElementList.removeNode(2);
         assertEquals(4, multiElementList.getSize());
         assertEquals(Arrays.asList(1, 2, 4, 5), multiElementList.getValues());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void invalidRemovalRequestThrowsNegativeArgument() {
+        multiElementList.removeNode(-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void invalidRemovalRequestThrowsExceedingArgument() {
+        multiElementList.removeNode(11);
     }
 }
