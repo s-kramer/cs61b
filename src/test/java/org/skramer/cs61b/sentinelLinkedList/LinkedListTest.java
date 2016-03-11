@@ -14,13 +14,15 @@ import static junit.framework.Assert.assertEquals;
  */
 public class LinkedListTest {
 
-    private LinkedList list;
+    private LinkedList emptyList;
     private LinkedList multiElementList;
+    private LinkedList singletonList;
 
     @Before
     public void setUp() throws Exception {
-        list = new LinkedList();
+        emptyList = new LinkedList();
         multiElementList = new LinkedList(1, 2, 3, 4, 5);
+        singletonList = new LinkedList(5);
     }
 
     @Test
@@ -37,24 +39,24 @@ public class LinkedListTest {
 
     @Test
     public void nodesCanBeAddedToTheFrontOfTheList() {
-        list.insertFront(5);
-        assertEquals(1, list.getSize());
-        assertEquals(Collections.singletonList(5), list.getValues());
+        emptyList.insertFront(5);
+        assertEquals(1, emptyList.getSize());
+        assertEquals(Collections.singletonList(5), emptyList.getValues());
 
-        list.insertFront(10);
-        assertEquals(2, list.getSize());
-        assertEquals(Arrays.asList(10, 5), list.getValues());
+        emptyList.insertFront(10);
+        assertEquals(2, emptyList.getSize());
+        assertEquals(Arrays.asList(10, 5), emptyList.getValues());
     }
 
     @Test
     public void nodesCanBeAddedToTheBackOfTheList() {
-        list.insertBack(5);
-        assertEquals(1, list.getSize());
-        assertEquals(Collections.singletonList(5), list.getValues());
+        emptyList.insertBack(5);
+        assertEquals(1, emptyList.getSize());
+        assertEquals(Collections.singletonList(5), emptyList.getValues());
 
-        list.insertBack(10);
-        assertEquals(2, list.getSize());
-        assertEquals(Arrays.asList(5, 10), list.getValues());
+        emptyList.insertBack(10);
+        assertEquals(2, emptyList.getSize());
+        assertEquals(Arrays.asList(5, 10), emptyList.getValues());
     }
 
     @Test
@@ -78,4 +80,25 @@ public class LinkedListTest {
         assertEquals(Arrays.asList(1, 2, 3, 4), multiElementList.getValues());
     }
 
+    @Test
+    public void removeFrontNodeFromASingletonList() {
+        singletonList.removeFront();
+        assertEquals(0, singletonList.getSize());
+    }
+
+    @Test
+    public void removeBackNodeFromASingletonList() {
+        singletonList.removeBack();
+        assertEquals(0, singletonList.getSize());
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void frontNodeRemovalOfEmptyListThrows() {
+        emptyList.removeBack();
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void backNodeRemovalOfEmptyListThrows() {
+        emptyList.removeFront();
+    }
 }

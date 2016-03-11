@@ -105,7 +105,6 @@ public class LinkedList {
     }
 
     private LinkedListNode getListFront() {
-        // todo: handle empty list ond one element list cases
         return sentinelNode.next;
     }
 
@@ -113,12 +112,21 @@ public class LinkedList {
      * Removes the first node of the list
      */
     public void removeFront() {
-        sentinelNode.next = getListFront().next;
+        // todo: handle the prev pointer of previously second element
+        LinkedListNode oldFront = getListFront();
+        if (size == 0) {
+            throw new IndexOutOfBoundsException("The list is empty");
+        }
+
+        sentinelNode.next = oldFront.next;
         size -= 1;
     }
 
     public void removeBack() {
         LinkedListNode last = getListBack();
+        if (size == 0) {
+            throw new IndexOutOfBoundsException("The list is empty");
+        }
         sentinelNode.prev = last.prev;
         last.prev.next = sentinelNode;
         size -= 1;
