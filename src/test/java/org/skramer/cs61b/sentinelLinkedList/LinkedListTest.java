@@ -101,4 +101,11 @@ public class LinkedListTest {
     public void backNodeRemovalOfEmptyListThrows() {
         emptyList.removeFront();
     }
+
+    @Test
+    public void nthNodeCanBeRemoved() {
+        multiElementList.removeNode(2);
+        assertEquals(4, multiElementList.getSize());
+        assertEquals(Arrays.asList(1, 2, 4, 5), multiElementList.getValues());
+    }
 }

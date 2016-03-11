@@ -90,18 +90,15 @@ public class LinkedList {
      * @param value the value that should be associated with the node appended to the list
      */
     public void insertBack(int value) {
-        LinkedListNode it = moveToLastNode(getListFront());
+        LinkedListNode it = getLastNode();
 
         it.next = new LinkedListNode(sentinelNode, value, it);
         sentinelNode.prev = it.next;
         size += 1;
     }
 
-    private LinkedListNode moveToLastNode(LinkedListNode node) {
-        while (node.next != sentinelNode) {
-            node = node.next;
-        }
-        return node;
+    private LinkedListNode getLastNode() {
+        return sentinelNode.prev;
     }
 
     private LinkedListNode getListFront() {
@@ -109,30 +106,49 @@ public class LinkedList {
     }
 
     /**
-     * Removes the first node of the list
+     * Removes the first node of the list. This operation happens in constant time
      */
     public void removeFront() {
-        // todo: handle the prev pointer of previously second element
-        LinkedListNode oldFront = getListFront();
-        if (size == 0) {
-            throw new IndexOutOfBoundsException("The list is empty");
-        }
-
-        sentinelNode.next = oldFront.next;
-        size -= 1;
+        removeNode(0);
     }
 
+    /**
+     * Removes the last node of the list. This operation happens in constant time.
+     */
     public void removeBack() {
-        LinkedListNode last = getListBack();
-        if (size == 0) {
-            throw new IndexOutOfBoundsException("The list is empty");
-        }
-        sentinelNode.prev = last.prev;
-        last.prev.next = sentinelNode;
-        size -= 1;
+        removeNode(size - 1);
     }
 
     private LinkedListNode getListBack() {
         return sentinelNode.prev;
+    }
+
+    // todo: make abstraction for sentinel node - different strategies should be used for empty list, signleton list and multielement list
+
+    /**
+     * Removes node i from the list
+     *
+     * @param i the 0-based number of the node that should be removed
+     */
+    public void removeNode(int i) {
+        LinkedListNode ithNode = getIth(i);
+        ithNode.prev.next = ithNode.next;
+        ithNode.next.prev = ithNode.prev;
+        size -= 1;
+    }
+
+    private LinkedListNode getIth(int i) {
+        if (size == 0) {
+//            String exceptionMessage = String.format("List element %d exceeds the size of the list which is %d", i, size);
+            String exceptionMessage = ("The list is empty");
+            throw new IndexOutOfBoundsException(exceptionMessage);
+        }
+        // todo: move from front and from back
+        LinkedListNode it = getListFront();
+        for (int j = 0; j < i; j++) {
+            it = it.next;
+        }
+
+        return it;
     }
 }
