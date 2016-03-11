@@ -54,4 +54,11 @@ public class LinkedListTest {
         assertEquals(2, list.getSize());
         assertEquals(Arrays.asList(5, 10), list.getValues());
     }
+
+    @Test
+    public void listWithMultipleNodesCanBeCreatedAtOnce() {
+        LinkedList multielementList = new LinkedList(1, 2, 3, 4, 5);
+        assertEquals(5, multielementList.getSize());
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5), multielementList.getValues());
+    }
 }

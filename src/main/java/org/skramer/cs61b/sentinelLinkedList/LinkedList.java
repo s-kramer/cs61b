@@ -13,6 +13,19 @@ public class LinkedList {
     private static int SENTINEL_NODE_VALUE = Integer.MAX_VALUE;
 
     /**
+     * Creates a new linked list. Each of the provided arguments will be used to create a subsequent node of the list
+     *
+     * @param args values that will be used to create linked list nodes
+     */
+    public LinkedList(int... args) {
+        sentinelNode = makeSentinelNode();
+        for (int i : args) {
+            insertBack(i);
+        }
+    }
+
+
+    /**
      * Creates a linked list with a single node which's value is value
      *
      * @param value the value of the first node of the newly created list
