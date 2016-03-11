@@ -146,12 +146,28 @@ public class LinkedList {
         if (size == 0) {
             throw new IndexOutOfBoundsException("The list is empty");
         }
-        // todo: move from front and from back
+
+        if (i < size / 2) {
+            return proceedForward(i);
+        } else {
+            final int lastIndex = size - 1;
+            return proceedBackward(lastIndex - i);
+        }
+    }
+
+    private LinkedListNode proceedBackward(int i) {
+        LinkedListNode it = getListBack();
+        for (; i > 0; i--) {
+            it = it.prev;
+        }
+        return it;
+    }
+
+    private LinkedListNode proceedForward(int i) {
         LinkedListNode it = getListFront();
         for (int j = 0; j < i; j++) {
             it = it.next;
         }
-
         return it;
     }
 }
