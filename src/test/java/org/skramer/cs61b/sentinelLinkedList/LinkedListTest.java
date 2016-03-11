@@ -1,8 +1,10 @@
 package org.skramer.cs61b.sentinelLinkedList;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -11,6 +13,13 @@ import static junit.framework.Assert.assertEquals;
  * Unit tests for LinkedList - the linked list implementation with a sentinel node
  */
 public class LinkedListTest {
+
+    private LinkedList list;
+
+    @Before
+    public void setUp() throws Exception {
+        list = new LinkedList();
+    }
 
     @Test
     public void EmptyListCreationIsPossible() {
@@ -26,13 +35,23 @@ public class LinkedListTest {
 
     @Test
     public void nodesCanBeAddedToTheFrontOfTheList() {
-        LinkedList list = new LinkedList();
         list.insertFront(5);
         assertEquals(1, list.getSize());
-        assertEquals(Arrays.asList(5), list.getValues());
+        assertEquals(Collections.singletonList(5), list.getValues());
 
         list.insertFront(10);
         assertEquals(2, list.getSize());
         assertEquals(Arrays.asList(10, 5), list.getValues());
+    }
+
+    @Test
+    public void nodesCanBeAddedToTheBackOfTheList() {
+        list.insertBack(5);
+        assertEquals(1, list.getSize());
+        assertEquals(Collections.singletonList(5), list.getValues());
+
+        list.insertBack(10);
+        assertEquals(2, list.getSize());
+        assertEquals(Arrays.asList(5, 10), list.getValues());
     }
 }

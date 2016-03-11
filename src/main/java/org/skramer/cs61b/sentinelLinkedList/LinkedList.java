@@ -52,18 +52,45 @@ public class LinkedList {
      * @param i the value to be added to the front of the list
      */
     public void insertFront(int i) {
-        sentinelNode.next = new LinkedListNode(i, sentinelNode.next);
+        sentinelNode.next = new LinkedListNode(i, getFront());
         size += 1;
     }
 
-    // todo: do the docs
+    /**
+     * Generates a list of all values in the list
+     *
+     * @return a list of values stored in subsequent nodes of the list
+     */
     public List<Integer> getValues() {
-        LinkedListNode it = sentinelNode.next;
         List<Integer> result = new ArrayList<>(size);
-        for (; it != sentinelNode; it = it.next) {
+
+        for (LinkedListNode it = getFront(); it != sentinelNode; it = it.next) {
             result.add(it.getValue());
         }
 
         return result;
+    }
+
+    /**
+     * Inserts a new node with value value to the end of the list
+     *
+     * @param value the value that should be associated with the node appended to the list
+     */
+    public void insertBack(int value) {
+        LinkedListNode it = moveToLastNode(getFront());
+
+        it.next = new LinkedListNode(value, sentinelNode);
+        size += 1;
+    }
+
+    private LinkedListNode moveToLastNode(LinkedListNode node) {
+        while (node.next != sentinelNode) {
+            node = node.next;
+        }
+        return node;
+    }
+
+    private LinkedListNode getFront() {
+        return sentinelNode.next;
     }
 }
