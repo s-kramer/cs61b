@@ -126,12 +126,12 @@ public class LinkedList {
     // todo: make abstraction for sentinel node - different strategies should be used for empty list, signleton list and multielement list
 
     /**
-     * Removes node i from the list
+     * Removes nth node from the list
      *
-     * @param i the 0-based number of the node that should be removed
+     * @param n the 0-based number of the node that should be removed
      */
-    public void removeNode(int i) {
-        LinkedListNode ithNode = getNthNode(i);
+    public void removeNode(int n) {
+        LinkedListNode ithNode = getNthNode(n);
         ithNode.prev.next = ithNode.next;
         ithNode.next.prev = ithNode.prev;
         size -= 1;
