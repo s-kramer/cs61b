@@ -171,6 +171,12 @@ public class LinkedList {
         return getNthNode(i).getValue();
     }
 
+    /**
+     * Inserts a new node with value value at index n. The node that was previously on position n will now be on n+1.
+     *
+     * @param n     the index onto which the new node should be added
+     * @param value the value of the node to be added
+     */
     public void insertNode(int n, int value) {
         LinkedListNode previousNth = getNthNode(n);
         LinkedListNode previousNMinus1th = previousNth.prev;

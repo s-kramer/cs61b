@@ -141,11 +141,21 @@ public class LinkedListTest {
         int value = 15;
         multiElementList.insertNode(index, value);
         assertEquals(Arrays.asList(1, 2, 15, 3, 4, 5), multiElementList.getValues());
+    }
 
-        multiElementList.removeFront();
-        assertEquals(Arrays.asList(2, 15, 3, 4, 5), multiElementList.getValues());
+    @Test
+    public void nodeCanBeInsertedInTheFrontOfTheList() {
+        int index = 0;
+        int value = 15;
+        multiElementList.insertNode(index, value);
+        assertEquals(Arrays.asList(15, 1, 2, 3, 4, 5), multiElementList.getValues());
+    }
 
-        multiElementList.removeNode(2);
-        assertEquals(Arrays.asList(2, 15, 4, 5), multiElementList.getValues());
+    @Test
+    public void nodeCanBeInsertedToTheBackOfTheList() {
+        int index = 4;
+        int value = 15;
+        multiElementList.insertNode(index, value);
+        assertEquals(Arrays.asList(1, 2, 3, 4, 15, 5), multiElementList.getValues());
     }
 }
