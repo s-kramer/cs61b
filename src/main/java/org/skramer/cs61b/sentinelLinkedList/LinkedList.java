@@ -131,27 +131,27 @@ public class LinkedList {
      * @param i the 0-based number of the node that should be removed
      */
     public void removeNode(int i) {
-        LinkedListNode ithNode = getIth(i);
+        LinkedListNode ithNode = getNthNode(i);
         ithNode.prev.next = ithNode.next;
         ithNode.next.prev = ithNode.prev;
         size -= 1;
     }
 
-    private LinkedListNode getIth(int i) {
-        if (i < 0 || (size > 0 && i >= size)) {
+    private LinkedListNode getNthNode(int n) {
+        if (n < 0 || (size > 0 && n >= size)) {
             throw new IllegalArgumentException(String.format("List element %d exceeds the size of the list which is %d",
-                                                             i, size));
+                                                             n, size));
         }
 
         if (size == 0) {
             throw new IndexOutOfBoundsException("The list is empty");
         }
 
-        if (i < size / 2) {
-            return proceedForward(i);
+        if (n < size / 2) {
+            return proceedForward(n);
         } else {
             final int lastIndex = size - 1;
-            return proceedBackward(lastIndex - i);
+            return proceedBackward(lastIndex - n);
         }
     }
 
@@ -169,5 +169,9 @@ public class LinkedList {
             it = it.next;
         }
         return it;
+    }
+
+    public int getNodeValue(int i) {
+        return getNthNode(i).getValue();
     }
 }

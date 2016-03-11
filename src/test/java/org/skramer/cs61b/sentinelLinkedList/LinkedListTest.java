@@ -118,4 +118,20 @@ public class LinkedListTest {
     public void invalidRemovalRequestThrowsExceedingArgument() {
         multiElementList.removeNode(11);
     }
+
+    @Test
+    public void valueOfNthNodeCanBeRetrived() {
+        assertEquals(3, multiElementList.getNodeValue(2));
+    }
+
+    @Test
+    public void valueOfBoundaryNodesCanBeRetrived() {
+        assertEquals(1, multiElementList.getNodeValue(0));
+        assertEquals(5, multiElementList.getNodeValue(4));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void valueRequestForIncorrectNodeThrows() {
+        assertEquals(1, multiElementList.getNodeValue(11));
+    }
 }
