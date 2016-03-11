@@ -97,7 +97,7 @@ public class LinkedListTest {
         emptyList.removeBack();
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void backNodeRemovalOfEmptyListThrows() {
         emptyList.removeFront();
     }

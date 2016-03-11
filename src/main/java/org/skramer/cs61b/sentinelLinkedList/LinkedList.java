@@ -138,13 +138,9 @@ public class LinkedList {
     }
 
     private LinkedListNode getNthNode(int n) {
-        if (n < 0 || (size > 0 && n >= size)) {
+        if (n < 0 || n >= size) {
             throw new IllegalArgumentException(String.format("List element %d exceeds the size of the list which is %d",
                                                              n, size));
-        }
-
-        if (size == 0) {
-            throw new IndexOutOfBoundsException("The list is empty");
         }
 
         if (n < size / 2) {
