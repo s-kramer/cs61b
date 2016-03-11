@@ -5,10 +5,11 @@ import java.util.List;
 
 /**
  * Created by skramer on 3/10/16.
- * A linked list implementation with a sentinel node
+ * A linked list implementation.
+ * This implementation ensures that getSize() operates in constant time and that operations on the back of the list
+ * are performed in the same time as operations performed on the front.
  */
 public class LinkedList {
-    private static int SENTINEL_NODE_VALUE = Integer.MAX_VALUE;
     private LinkedListNode sentinelNode;
     private int size;
 
@@ -31,7 +32,8 @@ public class LinkedList {
      */
     public LinkedList(int value) {
         sentinelNode = makeSentinelNode();
-        sentinelNode.next = new LinkedListNode(value);
+        sentinelNode.next = new LinkedListNode(sentinelNode, value, sentinelNode);
+        sentinelNode.prev = sentinelNode.next;
         size = 1;
     }
 
@@ -44,9 +46,7 @@ public class LinkedList {
     }
 
     private LinkedListNode makeSentinelNode() {
-        LinkedListNode sentinelNode = new LinkedListNode(SENTINEL_NODE_VALUE);
-        sentinelNode.next = sentinelNode;
-        return sentinelNode;
+        return LinkedListNode.createSentinelNode();
     }
 
     /**
@@ -65,7 +65,7 @@ public class LinkedList {
      * @param i the value to be added to the front of the list
      */
     public void insertFront(int i) {
-        sentinelNode.next = new LinkedListNode(i, getFront());
+        sentinelNode.next = new LinkedListNode(getListFront(), i, sentinelNode);
         size += 1;
     }
 
@@ -77,7 +77,7 @@ public class LinkedList {
     public List<Integer> getValues() {
         List<Integer> result = new ArrayList<>(size);
 
-        for (LinkedListNode it = getFront(); it != sentinelNode; it = it.next) {
+        for (LinkedListNode it = getListFront(); it != sentinelNode; it = it.next) {
             result.add(it.getValue());
         }
 
@@ -90,9 +90,10 @@ public class LinkedList {
      * @param value the value that should be associated with the node appended to the list
      */
     public void insertBack(int value) {
-        LinkedListNode it = moveToLastNode(getFront());
+        LinkedListNode it = moveToLastNode(getListFront());
 
-        it.next = new LinkedListNode(value, sentinelNode);
+        it.next = new LinkedListNode(sentinelNode, value, it);
+        sentinelNode.prev = it.next;
         size += 1;
     }
 
@@ -103,7 +104,8 @@ public class LinkedList {
         return node;
     }
 
-    private LinkedListNode getFront() {
+    private LinkedListNode getListFront() {
+        // todo: handle empty list ond one element list cases
         return sentinelNode.next;
     }
 
@@ -111,7 +113,18 @@ public class LinkedList {
      * Removes the first node of the list
      */
     public void removeFront() {
-        sentinelNode.next = getFront().next;
+        sentinelNode.next = getListFront().next;
         size -= 1;
+    }
+
+    public void removeBack() {
+        LinkedListNode last = getListBack();
+        sentinelNode.prev = last.prev;
+        last.prev.next = sentinelNode;
+        size -= 1;
+    }
+
+    private LinkedListNode getListBack() {
+        return sentinelNode.prev;
     }
 }

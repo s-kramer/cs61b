@@ -71,4 +71,11 @@ public class LinkedListTest {
         assertEquals(Arrays.asList(2, 3, 4, 5), multiElementList.getValues());
     }
 
+    @Test
+    public void backNodeCanBeRemoved() {
+        multiElementList.removeBack();
+        assertEquals(4, multiElementList.getSize());
+        assertEquals(Arrays.asList(1, 2, 3, 4), multiElementList.getValues());
+    }
+
 }
