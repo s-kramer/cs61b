@@ -38,7 +38,8 @@ public class LinkedList {
     }
 
     /**
-     * Returns the length of the list, i.e. the number of nodes that were added to the list
+     * Returns the length of the list, i.e. the number of nodes that were added to the list.
+     * This function returns in constant time.
      *
      * @return the length of the list
      */
