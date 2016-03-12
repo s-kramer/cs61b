@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by skramer on 3/10/16.
@@ -22,22 +22,22 @@ public class DequeTest {
 
     @Before
     public void setUp() throws Exception {
-        emptyIntList = new Deque<>();
-        singletonIntList = new Deque<>(5);
-        multiElementIntList = new Deque<>(1, 2, 3, 4, 5);
+        emptyIntList = new DLinkedDeque<>();
+        singletonIntList = new DLinkedDeque<>(5);
+        multiElementIntList = new DLinkedDeque<>(1, 2, 3, 4, 5);
 
-        multiElementStringList = new Deque<>("S", "T", "R", "I", "N", "G");
+        multiElementStringList = new DLinkedDeque<>("S", "T", "R", "I", "N", "G");
     }
 
     @Test
     public void EmptyListCreationIsPossible() {
-        Deque<Integer> list = new Deque<>();
+        Deque<Integer> list = new DLinkedDeque<>();
         assertEquals(0, list.getSize());
     }
 
     @Test
     public void SingleNodeCreation() {
-        Deque<Integer> list = new Deque<>(5);
+        Deque<Integer> list = new DLinkedDeque<>(5);
         assertEquals(1, list.getSize());
     }
 
@@ -65,7 +65,7 @@ public class DequeTest {
 
     @Test
     public void listWithMultipleNodesCanBeCreatedAtOnce() {
-        Deque<Integer> multiElementList = new Deque<>(1, 2, 3, 4, 5);
+        Deque<Integer> multiElementList = new DLinkedDeque<>(1, 2, 3, 4, 5);
         assertEquals(5, multiElementList.getSize());
         assertEquals(Arrays.asList(1, 2, 3, 4, 5), multiElementList.getValues());
     }
