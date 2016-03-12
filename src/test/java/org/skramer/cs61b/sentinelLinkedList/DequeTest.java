@@ -18,7 +18,6 @@ public class DequeTest {
     private Deque<Integer> singletonIntList;
     private Deque<Integer> multiElementIntList;
 
-    private Deque<String> singletonStringList;
     private Deque<String> multiElementStringList;
 
     @Before
@@ -27,7 +26,6 @@ public class DequeTest {
         singletonIntList = new Deque<>(5);
         multiElementIntList = new Deque<>(1, 2, 3, 4, 5);
 
-        singletonStringList = new Deque<>("String");
         multiElementStringList = new Deque<>("S", "T", "R", "I", "N", "G");
     }
 
