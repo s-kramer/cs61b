@@ -9,8 +9,8 @@ import java.util.List;
  * This implementation ensures that getSize() operates in constant time and that operations on the back of the list
  * are performed in the same time as operations performed on the front.
  */
-public class LinkedList<T> {
-    private LinkedListNode<T> sentinelNode;
+public class Deque<T> {
+    private DequeNode<T> sentinelNode;
     private int size;
 
     /**
@@ -18,7 +18,7 @@ public class LinkedList<T> {
      *
      * @param args values that will be used to create linked list nodes
      */
-    public LinkedList(T... args) {
+    public Deque(T... args) {
         sentinelNode = makeSentinelNode();
         for (T i : args) {
             insertBack(i);
@@ -30,9 +30,9 @@ public class LinkedList<T> {
      *
      * @param value the value of the first node of the newly created list
      */
-    public LinkedList(T value) {
+    public Deque(T value) {
         sentinelNode = makeSentinelNode();
-        sentinelNode.next = new LinkedListNode<>(sentinelNode, value, sentinelNode);
+        sentinelNode.next = new DequeNode<>(sentinelNode, value, sentinelNode);
         sentinelNode.prev = sentinelNode.next;
         size = 1;
     }
@@ -40,13 +40,13 @@ public class LinkedList<T> {
     /**
      * Creates an empty linked list
      */
-    public LinkedList() {
+    public Deque() {
         sentinelNode = makeSentinelNode();
         size = 0;
     }
 
-    private LinkedListNode<T> makeSentinelNode() {
-        return LinkedListNode.createSentinelNode();
+    private DequeNode<T> makeSentinelNode() {
+        return DequeNode.createSentinelNode();
     }
 
     /**
@@ -65,7 +65,7 @@ public class LinkedList<T> {
      * @param value the value to be added to the front of the list
      */
     public void insertFront(T value) {
-        sentinelNode.next = new LinkedListNode<>(getListFront(), value, sentinelNode);
+        sentinelNode.next = new DequeNode<>(getListFront(), value, sentinelNode);
         size += 1;
     }
 
@@ -77,7 +77,7 @@ public class LinkedList<T> {
     public List<T> getValues() {
         List<T> result = new ArrayList<>(size);
 
-        for (LinkedListNode<T> it = getListFront(); it != sentinelNode; it = it.next) {
+        for (DequeNode<T> it = getListFront(); it != sentinelNode; it = it.next) {
             result.add(it.getValue());
         }
 
@@ -90,18 +90,18 @@ public class LinkedList<T> {
      * @param value the value that should be associated with the node appended to the list
      */
     public void insertBack(T value) {
-        LinkedListNode<T> it = getLastNode();
+        DequeNode<T> it = getLastNode();
 
-        it.next = new LinkedListNode<>(sentinelNode, value, it);
+        it.next = new DequeNode<>(sentinelNode, value, it);
         sentinelNode.prev = it.next;
         size += 1;
     }
 
-    private LinkedListNode<T> getLastNode() {
+    private DequeNode<T> getLastNode() {
         return sentinelNode.prev;
     }
 
-    private LinkedListNode<T> getListFront() {
+    private DequeNode<T> getListFront() {
         return sentinelNode.next;
     }
 
@@ -119,7 +119,7 @@ public class LinkedList<T> {
         removeNode(size - 1);
     }
 
-    private LinkedListNode<T> getListBack() {
+    private DequeNode<T> getListBack() {
         return sentinelNode.prev;
     }
 
@@ -131,13 +131,13 @@ public class LinkedList<T> {
      * @param n the 0-based number of the node that should be removed
      */
     public void removeNode(int n) {
-        LinkedListNode ithNode = getNthNode(n);
+        DequeNode ithNode = getNthNode(n);
         ithNode.prev.next = ithNode.next;
         ithNode.next.prev = ithNode.prev;
         size -= 1;
     }
 
-    private LinkedListNode<T> getNthNode(int n) {
+    private DequeNode<T> getNthNode(int n) {
         if (n < 0 || n >= size) {
             throw new IllegalArgumentException(String.format("List element %d exceeds the size of the list which is %d",
                                                              n, size));
@@ -151,16 +151,16 @@ public class LinkedList<T> {
         }
     }
 
-    private LinkedListNode<T> proceedBackward(int i) {
-        LinkedListNode<T> it = getListBack();
+    private DequeNode<T> proceedBackward(int i) {
+        DequeNode<T> it = getListBack();
         for (; i > 0; i--) {
             it = it.prev;
         }
         return it;
     }
 
-    private LinkedListNode<T> proceedForward(int i) {
-        LinkedListNode<T> it = getListFront();
+    private DequeNode<T> proceedForward(int i) {
+        DequeNode<T> it = getListFront();
         for (int j = 0; j < i; j++) {
             it = it.next;
         }
@@ -184,10 +184,10 @@ public class LinkedList<T> {
      * @param value the value of the node to be added
      */
     public void insertNode(int n, T value) {
-        LinkedListNode<T> previousNth = getNthNode(n);
-        LinkedListNode<T> previousNMinus1th = previousNth.prev;
+        DequeNode<T> previousNth = getNthNode(n);
+        DequeNode<T> previousNMinus1th = previousNth.prev;
 
-        previousNth.prev.next = new LinkedListNode<>(previousNth, value, previousNth.prev);
+        previousNth.prev.next = new DequeNode<>(previousNth, value, previousNth.prev);
         previousNth.prev = previousNMinus1th.next;
         size += 1;
     }

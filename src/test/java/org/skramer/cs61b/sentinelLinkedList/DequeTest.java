@@ -12,34 +12,34 @@ import static junit.framework.Assert.assertEquals;
  * Created by skramer on 3/10/16.
  * Unit tests for LinkedList - the linked list implementation with a sentinel node
  */
-public class LinkedListTest {
+public class DequeTest {
 
-    private LinkedList<Integer> emptyIntList;
-    private LinkedList<Integer> singletonIntList;
-    private LinkedList<Integer> multiElementIntList;
+    private Deque<Integer> emptyIntList;
+    private Deque<Integer> singletonIntList;
+    private Deque<Integer> multiElementIntList;
 
-    private LinkedList<String> singletonStringList;
-    private LinkedList<String> multiElementStringList;
+    private Deque<String> singletonStringList;
+    private Deque<String> multiElementStringList;
 
     @Before
     public void setUp() throws Exception {
-        emptyIntList = new LinkedList<>();
-        singletonIntList = new LinkedList<>(5);
-        multiElementIntList = new LinkedList<>(1, 2, 3, 4, 5);
+        emptyIntList = new Deque<>();
+        singletonIntList = new Deque<>(5);
+        multiElementIntList = new Deque<>(1, 2, 3, 4, 5);
 
-        singletonStringList = new LinkedList<>("String");
-        multiElementStringList = new LinkedList<>("S", "T", "R", "I", "N", "G");
+        singletonStringList = new Deque<>("String");
+        multiElementStringList = new Deque<>("S", "T", "R", "I", "N", "G");
     }
 
     @Test
     public void EmptyListCreationIsPossible() {
-        LinkedList<Integer> list = new LinkedList<>();
+        Deque<Integer> list = new Deque<>();
         assertEquals(0, list.getSize());
     }
 
     @Test
     public void SingleNodeCreation() {
-        LinkedList<Integer> list = new LinkedList<>(5);
+        Deque<Integer> list = new Deque<>(5);
         assertEquals(1, list.getSize());
     }
 
@@ -67,7 +67,7 @@ public class LinkedListTest {
 
     @Test
     public void listWithMultipleNodesCanBeCreatedAtOnce() {
-        LinkedList<Integer> multiElementList = new LinkedList<>(1, 2, 3, 4, 5);
+        Deque<Integer> multiElementList = new Deque<>(1, 2, 3, 4, 5);
         assertEquals(5, multiElementList.getSize());
         assertEquals(Arrays.asList(1, 2, 3, 4, 5), multiElementList.getValues());
     }
