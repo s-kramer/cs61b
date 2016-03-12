@@ -18,8 +18,10 @@ public class Deque<T> {
      *
      * @param args values that will be used to create linked list nodes
      */
+    @SafeVarargs
     public Deque(T... args) {
         sentinelNode = makeSentinelNode();
+        /* The vararg is used only for iteration so it's safe */
         for (T i : args) {
             insertBack(i);
         }
@@ -131,7 +133,7 @@ public class Deque<T> {
      * @param n the 0-based number of the node that should be removed
      */
     public void removeNode(int n) {
-        DequeNode ithNode = getNthNode(n);
+        DequeNode<T> ithNode = getNthNode(n);
         ithNode.prev.next = ithNode.next;
         ithNode.next.prev = ithNode.prev;
         size -= 1;
