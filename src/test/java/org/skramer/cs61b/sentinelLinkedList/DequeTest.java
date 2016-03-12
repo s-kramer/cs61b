@@ -193,6 +193,46 @@ public class DequeTest {
 
         assertEquals("N", multiElementStringList.getNodeValue(4));
         assertEquals(6, multiElementStringList.getSize());
+
+        multiElementStringList.removeFront();
+        multiElementStringList.removeFront();
+        multiElementStringList.removeFront();
+        multiElementStringList.removeFront();
+        multiElementStringList.removeFront();
+        multiElementStringList.removeFront();
+        assertEquals(0, multiElementStringList.getSize());
+
+        multiElementStringList.insertBack("Z");
+        multiElementStringList.insertBack("Z");
+        multiElementStringList.insertBack("Z");
+        multiElementStringList.insertBack("Z");
+        multiElementStringList.insertBack("Z");
+        multiElementStringList.insertBack("Z");
+        assertEquals(6, multiElementStringList.getSize());
+
+        multiElementStringList.removeFront();
+        multiElementStringList.removeFront();
+        multiElementStringList.removeFront();
+        multiElementStringList.removeFront();
+        multiElementStringList.removeFront();
+        multiElementStringList.removeFront();
+        assertEquals(0, multiElementStringList.getSize());
+
+        multiElementStringList.insertFront("Z");
+        multiElementStringList.insertFront("Z");
+        multiElementStringList.insertFront("Z");
+        multiElementStringList.insertFront("Z");
+        multiElementStringList.insertFront("Z");
+        multiElementStringList.insertFront("Z");
+        assertEquals(6, multiElementStringList.getSize());
+
+        multiElementStringList.removeBack();
+        multiElementStringList.removeBack();
+        multiElementStringList.removeBack();
+        multiElementStringList.removeBack();
+        multiElementStringList.removeBack();
+        multiElementStringList.removeBack();
+        assertEquals(0, multiElementStringList.getSize());
     }
 
 }
