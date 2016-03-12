@@ -72,6 +72,35 @@ public class Deque<T> {
     }
 
     /**
+     * Inserts a new node with value value to the end of the list
+     *
+     * @param value the value that should be associated with the node appended to the list
+     */
+    public void insertBack(T value) {
+        DequeNode<T> it = getLastNode();
+
+        it.next = new DequeNode<>(sentinelNode, value, it);
+        sentinelNode.prev = it.next;
+        size += 1;
+    }
+
+
+    /**
+     * Inserts a new node with value value at index n. The node that was previously on position n will now be on n+1.
+     *
+     * @param n     the index onto which the new node should be added
+     * @param value the value of the node to be added
+     */
+    public void insertNode(int n, T value) {
+        DequeNode<T> previousNth = getNthNode(n);
+        DequeNode<T> previousNMinus1th = previousNth.prev;
+
+        previousNth.prev.next = new DequeNode<>(previousNth, value, previousNth.prev);
+        previousNth.prev = previousNMinus1th.next;
+        size += 1;
+    }
+
+    /**
      * Generates a list of all values in the list
      *
      * @return a list of values stored in subsequent nodes of the list
@@ -87,18 +116,14 @@ public class Deque<T> {
     }
 
     /**
-     * Inserts a new node with value value to the end of the list
+     * Returns the value of the n-th subsequent node
      *
-     * @param value the value that should be associated with the node appended to the list
+     * @param n the number of the node that should be queried
+     * @return the value associated with the n-th node
      */
-    public void insertBack(T value) {
-        DequeNode<T> it = getLastNode();
-
-        it.next = new DequeNode<>(sentinelNode, value, it);
-        sentinelNode.prev = it.next;
-        size += 1;
+    public T getNodeValue(int n) {
+        return getNthNode(n).getValue();
     }
-
     private DequeNode<T> getLastNode() {
         return sentinelNode.prev;
     }
@@ -167,30 +192,5 @@ public class Deque<T> {
             it = it.next;
         }
         return it;
-    }
-
-    /**
-     * Returns the value of the n-th subsequent node
-     *
-     * @param n the number of the node that should be queried
-     * @return the value associated with the n-th node
-     */
-    public T getNodeValue(int n) {
-        return getNthNode(n).getValue();
-    }
-
-    /**
-     * Inserts a new node with value value at index n. The node that was previously on position n will now be on n+1.
-     *
-     * @param n     the index onto which the new node should be added
-     * @param value the value of the node to be added
-     */
-    public void insertNode(int n, T value) {
-        DequeNode<T> previousNth = getNthNode(n);
-        DequeNode<T> previousNMinus1th = previousNth.prev;
-
-        previousNth.prev.next = new DequeNode<>(previousNth, value, previousNth.prev);
-        previousNth.prev = previousNMinus1th.next;
-        size += 1;
     }
 }
