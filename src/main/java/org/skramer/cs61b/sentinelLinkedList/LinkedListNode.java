@@ -5,10 +5,10 @@ package org.skramer.cs61b.sentinelLinkedList;
  * A linked list implementation.
  * This implementation is a backing implementation that should be only used by LinkedList.
  */
-class LinkedListNode {
-    private final int value;
-    public LinkedListNode next;
-    public LinkedListNode prev;
+class LinkedListNode<T> {
+    private final T value;
+    public LinkedListNode<T> next;
+    public LinkedListNode<T> prev;
 
     /**
      * Generates a linked list node with value set to value.
@@ -18,7 +18,7 @@ class LinkedListNode {
      * @param value the value to be associated with the node
      * @param prev  the previous node
      */
-    public LinkedListNode(LinkedListNode next, int value, LinkedListNode prev) {
+    public LinkedListNode(LinkedListNode<T> next, T value, LinkedListNode<T> prev) {
         this.next = next;
         this.value = value;
         this.prev = prev;
@@ -29,11 +29,11 @@ class LinkedListNode {
      *
      * @return a sentinel node for the linked list
      */
-    public static LinkedListNode createSentinelNode() {
-        return new LinkedListNode(Integer.MAX_VALUE);
+    public static <T> LinkedListNode<T> createSentinelNode() {
+        return new LinkedListNode<>(null);
     }
 
-    private LinkedListNode(int value) {
+    private LinkedListNode(T value) {
         this.value = value;
         this.next = this;
         this.prev = this;
@@ -43,7 +43,7 @@ class LinkedListNode {
      * Returns the value associated with this node
      * @return the value associated with this node
      */
-    public Integer getValue() {
+    public T getValue() {
         return value;
     }
 }

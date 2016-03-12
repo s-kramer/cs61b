@@ -9,8 +9,8 @@ import java.util.List;
  * This implementation ensures that getSize() operates in constant time and that operations on the back of the list
  * are performed in the same time as operations performed on the front.
  */
-public class LinkedList {
-    private LinkedListNode sentinelNode;
+public class LinkedList<T> {
+    private LinkedListNode<T> sentinelNode;
     private int size;
 
     /**
@@ -18,9 +18,9 @@ public class LinkedList {
      *
      * @param args values that will be used to create linked list nodes
      */
-    public LinkedList(int... args) {
+    public LinkedList(T... args) {
         sentinelNode = makeSentinelNode();
-        for (int i : args) {
+        for (T i : args) {
             insertBack(i);
         }
     }
@@ -30,9 +30,9 @@ public class LinkedList {
      *
      * @param value the value of the first node of the newly created list
      */
-    public LinkedList(int value) {
+    public LinkedList(T value) {
         sentinelNode = makeSentinelNode();
-        sentinelNode.next = new LinkedListNode(sentinelNode, value, sentinelNode);
+        sentinelNode.next = new LinkedListNode<>(sentinelNode, value, sentinelNode);
         sentinelNode.prev = sentinelNode.next;
         size = 1;
     }
@@ -45,7 +45,7 @@ public class LinkedList {
         size = 0;
     }
 
-    private LinkedListNode makeSentinelNode() {
+    private LinkedListNode<T> makeSentinelNode() {
         return LinkedListNode.createSentinelNode();
     }
 
@@ -62,10 +62,10 @@ public class LinkedList {
     /**
      * Inserts a new node with value i to the front of the list
      *
-     * @param i the value to be added to the front of the list
+     * @param value the value to be added to the front of the list
      */
-    public void insertFront(int i) {
-        sentinelNode.next = new LinkedListNode(getListFront(), i, sentinelNode);
+    public void insertFront(T value) {
+        sentinelNode.next = new LinkedListNode<>(getListFront(), value, sentinelNode);
         size += 1;
     }
 
@@ -74,10 +74,10 @@ public class LinkedList {
      *
      * @return a list of values stored in subsequent nodes of the list
      */
-    public List<Integer> getValues() {
-        List<Integer> result = new ArrayList<>(size);
+    public List<T> getValues() {
+        List<T> result = new ArrayList<>(size);
 
-        for (LinkedListNode it = getListFront(); it != sentinelNode; it = it.next) {
+        for (LinkedListNode<T> it = getListFront(); it != sentinelNode; it = it.next) {
             result.add(it.getValue());
         }
 
@@ -89,19 +89,19 @@ public class LinkedList {
      *
      * @param value the value that should be associated with the node appended to the list
      */
-    public void insertBack(int value) {
-        LinkedListNode it = getLastNode();
+    public void insertBack(T value) {
+        LinkedListNode<T> it = getLastNode();
 
-        it.next = new LinkedListNode(sentinelNode, value, it);
+        it.next = new LinkedListNode<>(sentinelNode, value, it);
         sentinelNode.prev = it.next;
         size += 1;
     }
 
-    private LinkedListNode getLastNode() {
+    private LinkedListNode<T> getLastNode() {
         return sentinelNode.prev;
     }
 
-    private LinkedListNode getListFront() {
+    private LinkedListNode<T> getListFront() {
         return sentinelNode.next;
     }
 
@@ -119,7 +119,7 @@ public class LinkedList {
         removeNode(size - 1);
     }
 
-    private LinkedListNode getListBack() {
+    private LinkedListNode<T> getListBack() {
         return sentinelNode.prev;
     }
 
@@ -137,7 +137,7 @@ public class LinkedList {
         size -= 1;
     }
 
-    private LinkedListNode getNthNode(int n) {
+    private LinkedListNode<T> getNthNode(int n) {
         if (n < 0 || n >= size) {
             throw new IllegalArgumentException(String.format("List element %d exceeds the size of the list which is %d",
                                                              n, size));
@@ -151,24 +151,30 @@ public class LinkedList {
         }
     }
 
-    private LinkedListNode proceedBackward(int i) {
-        LinkedListNode it = getListBack();
+    private LinkedListNode<T> proceedBackward(int i) {
+        LinkedListNode<T> it = getListBack();
         for (; i > 0; i--) {
             it = it.prev;
         }
         return it;
     }
 
-    private LinkedListNode proceedForward(int i) {
-        LinkedListNode it = getListFront();
+    private LinkedListNode<T> proceedForward(int i) {
+        LinkedListNode<T> it = getListFront();
         for (int j = 0; j < i; j++) {
             it = it.next;
         }
         return it;
     }
 
-    public int getNodeValue(int i) {
-        return getNthNode(i).getValue();
+    /**
+     * Returns the value of the n-th subsequent node
+     *
+     * @param n the number of the node that should be queried
+     * @return the value associated with the n-th node
+     */
+    public T getNodeValue(int n) {
+        return getNthNode(n).getValue();
     }
 
     /**
@@ -177,13 +183,12 @@ public class LinkedList {
      * @param n     the index onto which the new node should be added
      * @param value the value of the node to be added
      */
-    public void insertNode(int n, int value) {
-        LinkedListNode previousNth = getNthNode(n);
-        LinkedListNode previousNMinus1th = previousNth.prev;
+    public void insertNode(int n, T value) {
+        LinkedListNode<T> previousNth = getNthNode(n);
+        LinkedListNode<T> previousNMinus1th = previousNth.prev;
 
-        previousNth.prev.next = new LinkedListNode(previousNth, value, previousNth.prev);
+        previousNth.prev.next = new LinkedListNode<>(previousNth, value, previousNth.prev);
         previousNth.prev = previousNMinus1th.next;
+        size += 1;
     }
-
-    // todo: generify
 }
