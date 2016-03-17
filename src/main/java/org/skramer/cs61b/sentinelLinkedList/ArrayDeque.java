@@ -10,7 +10,6 @@ public class ArrayDeque<T> implements Deque<T> {
     @SuppressWarnings("unchecked")
     T[] array = (T[]) new Object[capacity];
 
-    // todo: fix initial indexes
     private static final int STARTING_BACK_INDEX = 5;
     private static final int STARTING_FRONT_INDEX = 5;
     int backIndex = STARTING_BACK_INDEX;
@@ -107,6 +106,9 @@ public class ArrayDeque<T> implements Deque<T> {
 
     @Override
     public void removeBack() {
+        if (size == 0) {
+            throw new IllegalArgumentException("Remove request on empty list");
+        }
         array[backIndex] = null;
         --backIndex;
         --size;

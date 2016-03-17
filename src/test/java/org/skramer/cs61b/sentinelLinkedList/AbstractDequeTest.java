@@ -105,12 +105,12 @@ public abstract class AbstractDequeTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void frontNodeRemovalOfEmptyListThrows() {
-        emptyIntList.removeBack();
+        emptyIntList.removeFront();
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void backNodeRemovalOfEmptyListThrows() {
-        emptyIntList.removeFront();
+        emptyIntList.removeBack();
     }
 
     @Test
