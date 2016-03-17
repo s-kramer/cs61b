@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +13,7 @@ import static org.junit.Assert.assertEquals;
  * Created by skramer on 3/10/16.
  * Unit tests for LinkedList - the linked list implementation with a sentinel node
  */
-public class DequeTest {
+public abstract class AbstractDequeTest {
 
     private Deque<Integer> emptyIntList;
     private Deque<Integer> singletonIntList;
@@ -20,24 +21,30 @@ public class DequeTest {
 
     private Deque<String> multiElementStringList;
 
+    public abstract <T> Deque<T> makeInstance();
+
+    public abstract <T> Deque<T> makeInstance(T param);
+
+    public abstract <T> Deque<T> makeInstance(List<T> params);
+
     @Before
     public void setUp() throws Exception {
-        emptyIntList = new DLinkedDeque<>();
-        singletonIntList = new DLinkedDeque<>(5);
-        multiElementIntList = new DLinkedDeque<>(1, 2, 3, 4, 5);
+        emptyIntList = makeInstance();
+        singletonIntList = makeInstance(5);
+        multiElementIntList = makeInstance(Arrays.asList(1, 2, 3, 4, 5));
 
-        multiElementStringList = new DLinkedDeque<>("S", "T", "R", "I", "N", "G");
+        multiElementStringList = makeInstance(Arrays.asList("S", "T", "R", "I", "N", "G"));
     }
 
     @Test
     public void EmptyListCreationIsPossible() {
-        Deque<Integer> list = new DLinkedDeque<>();
+        Deque<Integer> list = makeInstance();
         assertEquals(0, list.getSize());
     }
 
     @Test
     public void SingleNodeCreation() {
-        Deque<Integer> list = new DLinkedDeque<>(5);
+        Deque<Integer> list = makeInstance(5);
         assertEquals(1, list.getSize());
     }
 
@@ -65,7 +72,7 @@ public class DequeTest {
 
     @Test
     public void listWithMultipleNodesCanBeCreatedAtOnce() {
-        Deque<Integer> multiElementList = new DLinkedDeque<>(1, 2, 3, 4, 5);
+        Deque<Integer> multiElementList = makeInstance(Arrays.asList(1, 2, 3, 4, 5));
         assertEquals(5, multiElementList.getSize());
         assertEquals(Arrays.asList(1, 2, 3, 4, 5), multiElementList.getValues());
     }

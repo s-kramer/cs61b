@@ -14,17 +14,14 @@ public class DLinkedDeque<T> implements Deque<T> {
     private int size;
 
     /**
-     * Creates a new linked list. Each of the provided arguments will be used to create a subsequent node of the list
+     * Creates a new linked list using elements from an already existing list.
+     * Each of the provided arguments will be used to create a subsequent node of the list.
      *
-     * @param args values that will be used to create linked list nodes
+     * @param args a list of values that will be used to create subsequent linked list nodes
      */
-    @SafeVarargs
-    public DLinkedDeque(T... args) {
+    public DLinkedDeque(List<T> args) {
         sentinelNode = makeSentinelNode();
-        /* The vararg is used only for iteration so it's safe */
-        for (T i : args) {
-            insertBack(i);
-        }
+        args.forEach(this::insertBack);
     }
 
     /**
