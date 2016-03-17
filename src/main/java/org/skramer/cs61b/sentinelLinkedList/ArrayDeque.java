@@ -101,7 +101,12 @@ public class ArrayDeque<T> implements Deque<T> {
 
     @Override
     public void removeFront() {
-
+        if (size == 0) {
+            throw new IllegalArgumentException("Remove request on empty list");
+        }
+        array[frontIndex] = null;
+        ++frontIndex;
+        --size;
     }
 
     @Override
