@@ -35,13 +35,6 @@ public class ArrayDequeTest extends AbstractDequeTest {
     @Ignore
     @Test
     @Override
-    public void backNodeCanBeRemoved() {
-        super.backNodeCanBeRemoved();
-    }
-
-    @Ignore
-    @Test
-    @Override
     public void backNodeRemovalOfEmptyListThrows() {
         super.backNodeRemovalOfEmptyListThrows();
     }

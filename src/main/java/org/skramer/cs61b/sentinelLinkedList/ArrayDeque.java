@@ -107,7 +107,9 @@ public class ArrayDeque<T> implements Deque<T> {
 
     @Override
     public void removeBack() {
-
+        array[backIndex] = null;
+        --backIndex;
+        --size;
     }
 
     @Override
