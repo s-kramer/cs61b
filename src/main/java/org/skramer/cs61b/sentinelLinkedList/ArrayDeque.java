@@ -102,6 +102,9 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     private int getIndexOfNthNode(int n) {
+        if (n >= size || n < 0) {
+            throw new IllegalArgumentException(String.format("%d node requested but list is only %d long", n, size));
+        }
         return (frontIndex + n) % capacity;
     }
 

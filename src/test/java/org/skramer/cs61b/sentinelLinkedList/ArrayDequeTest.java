@@ -27,28 +27,6 @@ public class ArrayDequeTest extends AbstractDequeTest {
     public <T> Deque<T> makeInstance(List<T> params) {
         return new ArrayDeque<T>(params);
     }
-
-    @Ignore
-    @Test
-    @Override
-    public void valueRequestForIncorrectNodeThrows() {
-        super.valueRequestForIncorrectNodeThrows();
-    }
-
-    @Ignore
-    @Test
-    @Override
-    public void invalidRemovalRequestThrowsExceedingArgument() {
-        super.invalidRemovalRequestThrowsExceedingArgument();
-    }
-
-    @Ignore
-    @Test
-    @Override
-    public void invalidRemovalRequestThrowsNegativeArgument() {
-        super.invalidRemovalRequestThrowsNegativeArgument();
-    }
-
     @Ignore
     @Test
     @Override
