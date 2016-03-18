@@ -1,6 +1,5 @@
 package org.skramer.cs61b.sentinelLinkedList;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -60,12 +59,5 @@ public class ArrayDequeTest extends AbstractDequeTest {
 
         assertEquals(4, list.getSize());
         assertEquals(Arrays.asList(5, 7, 8, 10), list.getValues());
-    }
-
-    @Ignore
-    @Test
-    @Override
-    public void stringListCanBeOperatedOn() {
-        super.stringListCanBeOperatedOn();
     }
 }

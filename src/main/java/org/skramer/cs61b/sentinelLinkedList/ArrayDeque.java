@@ -36,12 +36,12 @@ public class ArrayDeque<T> implements Deque<T> {
     @Override
     public void insertFront(T value) {
         ensureCapacity();
-        frontIndex = getPreviousFront(frontIndex);
+        frontIndex = getPreviousIndex(frontIndex);
         array[frontIndex] = value;
         ++size;
     }
 
-    private int getNextBack(int index) {
+    private int getNextIndex(int index) {
         if (index == capacity - 1) {
             return 0;
         }
@@ -58,7 +58,7 @@ public class ArrayDeque<T> implements Deque<T> {
     public void insertBack(T value) {
         ensureCapacity();
         array[backIndex] = value;
-        backIndex = getNextBack(backIndex);
+        backIndex = getNextIndex(backIndex);
         ++size;
     }
 
@@ -69,7 +69,7 @@ public class ArrayDeque<T> implements Deque<T> {
         }
     }
 
-    private int getPreviousFront(int index) {
+    private int getPreviousIndex(int index) {
         if (index == 0) {
             return capacity - 1;
         }
@@ -106,6 +106,7 @@ public class ArrayDeque<T> implements Deque<T> {
         System.arraycopy(array, srcPos, array, destPos, lengthUntilBack);
         array[index] = value;
 
+        backIndex = getNextIndex(backIndex);
         ++size;
     }
 
@@ -115,7 +116,7 @@ public class ArrayDeque<T> implements Deque<T> {
         int index = frontIndex;
         for (int i = 0; i < size; i++) {
             result.add(array[index]);
-            index = getNextBack(index);
+            index = getNextIndex(index);
         }
 
         return result;
@@ -140,7 +141,7 @@ public class ArrayDeque<T> implements Deque<T> {
             throw new IllegalArgumentException("Remove request on empty list");
         }
         array[frontIndex] = null;
-        ++frontIndex;
+        frontIndex = getNextIndex(frontIndex);
         --size;
     }
 
@@ -149,8 +150,8 @@ public class ArrayDeque<T> implements Deque<T> {
         if (size == 0) {
             throw new IllegalArgumentException("Remove request on empty list");
         }
+        backIndex = getPreviousIndex(backIndex);
         array[backIndex] = null;
-        --backIndex;
         --size;
     }
 
@@ -182,6 +183,7 @@ public class ArrayDeque<T> implements Deque<T> {
         // nullify the last node of the list
         array[getIndexOfNthNode(size - 1)] = null;
 
+        backIndex = getPreviousIndex(backIndex);
         --size;
     }
 }
