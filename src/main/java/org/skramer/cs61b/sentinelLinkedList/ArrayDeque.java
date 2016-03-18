@@ -5,13 +5,15 @@ import java.util.List;
 
 public class ArrayDeque<T> implements Deque<T> {
     private static final int RESIZE_FACTOR = 2;
+    private static final int STARTING_BACK_INDEX = 5;
+    private static final int STARTING_FRONT_INDEX = 5;
+
     int capacity = 8;
     int size = 0;
+
     @SuppressWarnings("unchecked")
     T[] array = (T[]) new Object[capacity];
 
-    private static final int STARTING_BACK_INDEX = 5;
-    private static final int STARTING_FRONT_INDEX = 5;
     int backIndex = STARTING_BACK_INDEX;
     int frontIndex = STARTING_FRONT_INDEX;
 
@@ -19,7 +21,7 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     public ArrayDeque(T param) {
-        insertFront(param);
+        insertBack(param);
     }
 
     public ArrayDeque(List<T> params) {
@@ -34,8 +36,8 @@ public class ArrayDeque<T> implements Deque<T> {
     @Override
     public void insertFront(T value) {
         ensureCapacity();
-        array[frontIndex] = value;
         frontIndex = getPreviousFront(frontIndex);
+        array[frontIndex] = value;
         ++size;
     }
 
@@ -95,8 +97,12 @@ public class ArrayDeque<T> implements Deque<T> {
 
     @Override
     public T getNodeValue(int n) {
-        int index = (frontIndex + n) % capacity;
+        int index = getIndexOfNthNode(n);
         return array[index];
+    }
+
+    private int getIndexOfNthNode(int n) {
+        return (frontIndex + n) % capacity;
     }
 
     @Override
@@ -121,6 +127,32 @@ public class ArrayDeque<T> implements Deque<T> {
 
     @Override
     public void removeNode(int n) {
+        int index = getIndexOfNthNode(n);
 
+        int srcPos = index + 1;
+        int destPos = index;
+
+        int length = size - 1 - n;
+        int lengthUntilBack = length;
+        int lengthFromFront = 0;
+
+        if (srcPos + length > capacity) {
+            lengthUntilBack = capacity - srcPos;
+            lengthFromFront = length - lengthUntilBack;
+        }
+
+        // move the back of the array
+        System.arraycopy(array, srcPos, array, destPos, lengthUntilBack);
+        array[index + lengthUntilBack] = array[0];
+
+        // move the front of the array in necessary
+        if (lengthFromFront > 0) {
+            System.arraycopy(array, 1, array, 0, lengthFromFront);
+        }
+
+        // nullify the last node of the list
+        array[getIndexOfNthNode(size - 1)] = null;
+
+        --size;
     }
 }
