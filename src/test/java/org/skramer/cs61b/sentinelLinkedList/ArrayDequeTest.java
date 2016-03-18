@@ -27,6 +27,7 @@ public class ArrayDequeTest extends AbstractDequeTest {
     public <T> Deque<T> makeInstance(List<T> params) {
         return new ArrayDeque<T>(params);
     }
+
     @Ignore
     @Test
     @Override
@@ -46,13 +47,6 @@ public class ArrayDequeTest extends AbstractDequeTest {
     @Override
     public void nodeCanBeInsertedToTheBackOfTheList() {
         super.nodeCanBeInsertedToTheBackOfTheList();
-    }
-
-    @Ignore
-    @Test
-    @Override
-    public void nodesCanBeAddedToTheFrontOfTheList() {
-        super.nodesCanBeAddedToTheFrontOfTheList();
     }
 
     @Test
