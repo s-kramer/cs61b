@@ -8,14 +8,15 @@ public class ArrayDeque<T> implements Deque<T> {
     private static final int STARTING_BACK_INDEX = 5;
     private static final int STARTING_FRONT_INDEX = 5;
 
-    int capacity = 8;
-    int size = 0;
+    private int capacity = 8;
+    private int size = 0;
 
+    // package-private for testing
     @SuppressWarnings("unchecked")
     T[] array = (T[]) new Object[capacity];
 
-    int backIndex = STARTING_BACK_INDEX;
-    int frontIndex = STARTING_FRONT_INDEX;
+    private int backIndex = STARTING_BACK_INDEX;
+    private int frontIndex = STARTING_FRONT_INDEX;
 
     public ArrayDeque() {
     }
