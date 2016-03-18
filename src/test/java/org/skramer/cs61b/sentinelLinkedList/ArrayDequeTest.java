@@ -28,27 +28,6 @@ public class ArrayDequeTest extends AbstractDequeTest {
         return new ArrayDeque<T>(params);
     }
 
-    @Ignore
-    @Test
-    @Override
-    public void nodeCanBeInsertedInTheFrontOfTheList() {
-        super.nodeCanBeInsertedInTheFrontOfTheList();
-    }
-
-    @Ignore
-    @Test
-    @Override
-    public void nodeCanBeInsertedInTheMiddleOfTheList() {
-        super.nodeCanBeInsertedInTheMiddleOfTheList();
-    }
-
-    @Ignore
-    @Test
-    @Override
-    public void nodeCanBeInsertedToTheBackOfTheList() {
-        super.nodeCanBeInsertedToTheBackOfTheList();
-    }
-
     @Test
     public void nthNodeCanBeRemovedNoOverflow() {
         Deque<Integer> list = makeInstance(5);

@@ -170,6 +170,7 @@ public abstract class AbstractDequeTest {
         assertEquals(Arrays.asList(1, 2, 3, 4, 15, 5), multiElementIntList.getValues());
     }
 
+    // todo: add space consumption tests?
     @Test
     public void stringListCanBeOperatedOn() {
         assertEquals(Arrays.asList("S", "T", "R", "I", "N", "G"), multiElementStringList.getValues());
