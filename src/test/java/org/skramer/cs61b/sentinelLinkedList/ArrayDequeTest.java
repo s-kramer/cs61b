@@ -98,4 +98,32 @@ public class ArrayDequeTest extends AbstractDequeTest {
         float usageRatio = (float) count / array.length;
         return usageRatio;
     }
+
+    @Test
+    public void elementsCanBeAddedToTheFrontOfTheListWhenListFrontIndexIsAtTheBeginningOfTheArray() {
+        // assumes that INITIAL_FRONT == 5
+        Deque<Integer> deque = new ArrayDeque<>();
+        deque.insertFront(1);
+        deque.insertFront(2);
+        deque.insertFront(3);
+        deque.insertFront(4);
+        deque.insertFront(5);
+
+        deque.insertNode(0, 10);
+        assertThat(deque.getSize(), is(6));
+        assertThat(deque.getValues(), is(Arrays.asList(10, 5, 4, 3, 2, 1)));
+    }
+
+    @Test
+    public void elementsCanBeAddedToTheBackOfTheListWhenListBackIndexIsAtTheEndOfTheArray() {
+        // assumes that INITIAL_BACK == 5
+        Deque<Integer> deque = new ArrayDeque<>();
+        deque.insertBack(1);
+        deque.insertBack(2);
+        deque.insertBack(3);
+
+        deque.insertNode(2, 10);
+        assertThat(deque.getSize(), is(4));
+        assertThat(deque.getValues(), is(Arrays.asList(1, 2, 10, 3)));
+    }
 }

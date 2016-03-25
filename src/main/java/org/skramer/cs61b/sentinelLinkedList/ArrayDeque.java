@@ -92,7 +92,6 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     private void ensureCapacity() {
-        // todo: add downsizing
         if (size == capacity) {
             resizeArray();
         } else if (size > INITIAL_CAPACITY && (float) size / capacity < DOWNSIZE_FACTOR) {
@@ -122,38 +121,22 @@ public class ArrayDeque<T> implements Deque<T> {
         return index - 1;
     }
 
-    // todo: 2 variants
-    // todo: simplify this!!
     @Override
     public void insertNode(int n, T value) {
         checkIndexArgumentSanity(n);
         ensureCapacity();
 
-        int index = getIndexOfNthNode(n);
+        int nthIndex = getIndexOfNthNode(n);
 
-        int srcPos = index;
-        int destPos = index + 1;
-
-        int length = size - n;
-        int lengthUntilBack = length;
-        int lengthFromFront = 0;
-
-        if (destPos + length > capacity) {
-            lengthUntilBack = capacity - destPos;
-            lengthFromFront = length - lengthUntilBack;
+        if (nthIndex >= frontIndex && frontIndex != 0) {
+            System.arraycopy(array, frontIndex, array, frontIndex - 1, nthIndex - frontIndex);
+            frontIndex = getPreviousIndex(frontIndex);
+        } else {
+            System.arraycopy(array, nthIndex, array, nthIndex + 1, backIndex - nthIndex);
+            backIndex = getNextIndex(backIndex);
         }
 
-        // move the front of the array in necessary
-        if (lengthFromFront > 0) {
-            System.arraycopy(array, 0, array, 1, lengthFromFront);
-            array[0] = array[capacity - 1];
-        }
-
-        // move the back of the array
-        System.arraycopy(array, srcPos, array, destPos, lengthUntilBack);
-        array[index] = value;
-
-        backIndex = getNextIndex(backIndex);
+        array[getIndexOfNthNode(n)] = value;
         ++size;
     }
 
