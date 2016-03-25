@@ -57,11 +57,14 @@ public class ArrayDeque<T> implements Deque<T> {
         T[] result = (T[]) new Object[newCapacity];
 
         final int elementCountUntilBack = getElementCountUntilBack();
-        final int newFrontIndex = Math.min(STARTING_FRONT_INDEX, newCapacity - elementCountUntilBack);
+        final int newFrontIndex = newCapacity - elementCountUntilBack;
         System.arraycopy(array, frontIndex, result, newFrontIndex, elementCountUntilBack);
         frontIndex = newFrontIndex;
 
         System.arraycopy(array, 0, result, 0, backIndex);
+
+        array = result;
+        capacity = newCapacity;
     }
 
     private int getElementCountUntilBack() {

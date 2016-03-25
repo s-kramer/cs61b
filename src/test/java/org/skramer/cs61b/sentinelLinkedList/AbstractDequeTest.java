@@ -6,6 +6,8 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
 
@@ -243,4 +245,11 @@ public abstract class AbstractDequeTest {
         assertEquals(0, multiElementStringList.getSize());
     }
 
+    @Test
+    public void underlyingArrayCanBeResized() {
+        List<Integer> integerList = IntStream.range(0, 20).boxed().collect(Collectors.toList());
+        Deque<Integer> deque = new ArrayDeque<>(integerList);
+        assertEquals(20, deque.getSize());
+        assertEquals(deque.getValues(), integerList);
+    }
 }
