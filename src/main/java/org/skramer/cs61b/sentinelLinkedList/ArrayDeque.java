@@ -196,39 +196,23 @@ public class ArrayDeque<T> implements Deque<T> {
         }
     }
 
-    // todo: simplify this
     @Override
     public void removeNode(int n) {
         checkIndexArgumentSanity(n);
-        int index = getIndexOfNthNode(n);
+        int nthIndex = getIndexOfNthNode(n);
 
-        int srcPos = index + 1;
-        int destPos = index;
-
-        int length = size - 1 - n;
-        int lengthUntilBack = length;
-        int lengthFromFront = 0;
-
-        if (srcPos + length > capacity) {
-            lengthUntilBack = capacity - srcPos;
-            lengthFromFront = length - lengthUntilBack;
+        if (nthIndex >= frontIndex) {
+            System.arraycopy(array, frontIndex, array, frontIndex + 1, nthIndex - frontIndex);
+            array[frontIndex] = null;
+            frontIndex = getNextIndex(frontIndex);
+        } else {
+            final int lastIndex = getIndexOfNthNode(size - 1);
+            System.arraycopy(array, nthIndex + 1, array, nthIndex, lastIndex - nthIndex);
+            array[lastIndex] = null;
+            backIndex = getPreviousIndex(backIndex);
         }
 
-        // move the back of the array
-        System.arraycopy(array, srcPos, array, destPos, lengthUntilBack);
-        array[index + lengthUntilBack] = array[0];
-
-        // move the front of the array in necessary
-        if (lengthFromFront > 0) {
-            System.arraycopy(array, 1, array, 0, lengthFromFront);
-        }
-
-        // nullify the last node of the list
-        array[getIndexOfNthNode(size - 1)] = null;
-
-        backIndex = getPreviousIndex(backIndex);
         --size;
-
         ensureCapacity();
     }
 }
