@@ -49,10 +49,23 @@ public class ArrayDeque<T> implements Deque<T> {
         return index + 1;
     }
 
-    @SuppressWarnings("unchecked")
     private void resizeArray() {
-        T[] result = (T[]) new Object[capacity * RESIZE_FACTOR];
-        System.arraycopy(array, 0, result, 0, array.length);
+        final int newCapacity = capacity * RESIZE_FACTOR;
+        // The suppression is safe because it's just a resize
+        // and because old array is not exposed to end users
+        @SuppressWarnings("unchecked")
+        T[] result = (T[]) new Object[newCapacity];
+
+        final int elementCountUntilBack = getElementCountUntilBack();
+        final int newFrontIndex = Math.min(STARTING_FRONT_INDEX, newCapacity - elementCountUntilBack);
+        System.arraycopy(array, frontIndex, result, newFrontIndex, elementCountUntilBack);
+        frontIndex = newFrontIndex;
+
+        System.arraycopy(array, 0, result, 0, backIndex);
+    }
+
+    private int getElementCountUntilBack() {
+        return size - frontIndex;
     }
 
     @Override
@@ -79,6 +92,7 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     // todo: 2 variants
+    // todo: simplify this!!
     @Override
     public void insertNode(int n, T value) {
         ensureCapacity();
