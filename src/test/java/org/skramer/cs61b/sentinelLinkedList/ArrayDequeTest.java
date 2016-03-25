@@ -25,12 +25,12 @@ public class ArrayDequeTest extends AbstractDequeTest {
 
     @Override
     public <T> Deque<T> makeInstance(T param) {
-        return new ArrayDeque<T>(param);
+        return new ArrayDeque<>(param);
     }
 
     @Override
     public <T> Deque<T> makeInstance(List<T> params) {
-        return new ArrayDeque<T>(params);
+        return new ArrayDeque<>(params);
     }
 
     @Test
@@ -95,8 +95,7 @@ public class ArrayDequeTest extends AbstractDequeTest {
     private float getArrayActualUsage(ArrayDeque<?> list) {
         Object[] array = list.array;
         long count = Arrays.stream(array).filter(i -> i != null).count();
-        float usageRatio = (float) count / array.length;
-        return usageRatio;
+        return (float) count / array.length;
     }
 
     @Test
